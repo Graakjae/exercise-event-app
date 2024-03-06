@@ -8,11 +8,17 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 import styles from "./tailwind.css";
+import appStylesHref from "./app.css";
+import Nav from "~/components/Nav";
 
 export const links = () => [
   {
     rel: "stylesheet",
     href: styles,
+  },
+  {
+    rel: "stylesheet",
+    href: appStylesHref,
   },
 ];
 
@@ -30,6 +36,8 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <h1 className="text-4xl text-center">EVENT</h1>
+        <Nav />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
