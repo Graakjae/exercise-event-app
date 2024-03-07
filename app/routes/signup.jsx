@@ -1,4 +1,4 @@
-import { Form, useLoaderData } from "@remix-run/react";
+import { Form, Link, useLoaderData } from "@remix-run/react";
 import { authenticator } from "../services/auth.server";
 import { sessionStorage } from "../services/session.server";
 import { json, redirect } from "@remix-run/node";
@@ -72,6 +72,9 @@ export default function SignUp() {
           <button>Sign Up</button>
         </div>
       </Form>
+      <p>
+        have an account? <Link to="/signin">Sign in here</Link>
+      </p>
     </div>
   );
 }
