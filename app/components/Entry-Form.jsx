@@ -6,7 +6,7 @@ export default function EntryForm({ event }) {
   const [image, setImage] = useState(event?.image);
   const navigate = useNavigate();
   const actionData = useActionData();
-
+  console.log("entryform actiondata", actionData);
   return (
     <fetcher.Form id="post-form" method="post" className="mt-2">
       <fieldset

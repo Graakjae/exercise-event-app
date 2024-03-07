@@ -17,7 +17,7 @@ export async function loader({ request }) {
 
 export default function AddPost() {
   const actionData = useActionData();
-  console.log("actionData22", actionData);
+  console.log("add-event actionData", actionData);
   return (
     <div className="page">
       <h1>Add a Event</h1>
