@@ -1,7 +1,7 @@
 import { redirect } from "@remix-run/node";
 
 export const meta = () => {
-  return [{ title: "Remix Post App" }];
+  return [{ title: "Event" }];
 };
 
 export async function loader() {
