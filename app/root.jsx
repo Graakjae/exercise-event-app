@@ -6,6 +6,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
+  isRouteErrorResponse,
+  useNavigate,
 } from "@remix-run/react";
 import styles from "./tailwind.css";
 import appStylesHref from "./app.css";
@@ -23,7 +26,7 @@ export const links = () => [
 ];
 
 export function meta() {
-  return [{ title: "Work Journal" }];
+  return [{ title: "Event" }];
 }
 
 export default function App() {
@@ -42,6 +45,37 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
+      </body>
+    </html>
+  );
+}
+
+export function ErrorBoundary() {
+  let error = useRouteError();
+  console.error(error);
+  const navigate = useNavigate();
+
+  return (
+    <html lang="en" className="h-full">
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body className="flex h-full flex-col items-center justify-center">
+        <p className="text-3xl">Whoops!</p>
+
+        {isRouteErrorResponse(error) ? (
+          <p>
+            {error.status} - {error.statusText}
+          </p>
+        ) : error instanceof Error ? (
+          <p>{error.message}</p>
+        ) : (
+          <p>Something happened.</p>
+        )}
+        <button onClick={() => navigate(-1)}>Go back</button>
+        <Scripts />
       </body>
     </html>
   );
