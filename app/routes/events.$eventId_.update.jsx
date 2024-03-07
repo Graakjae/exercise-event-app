@@ -3,11 +3,13 @@ import { Form, useLoaderData, useNavigate } from "@remix-run/react";
 import { useState } from "react";
 import mongoose from "mongoose";
 import { authenticator } from "~/services/auth.server";
+import { getSession } from "~/services/session.server";
+import EntryForm from "~/components/Entry-Form";
 
 export function meta() {
   return [
     {
-      title: "Remix Post App - Update",
+      title: "Event App - Update Event",
     },
   ];
 }
@@ -19,6 +21,10 @@ export async function loader({ params, request }) {
   const event = await mongoose.models.Event.findById(params.eventId).populate(
     "user",
   );
+  let session = await getSession(request.headers.get("Cookie"));
+  if (session.data.user._id != event.user._id) {
+    throw new Response("not authorized", { status: 401 });
+  }
   return json({ event });
 }
 
@@ -27,67 +33,29 @@ export default function UpdateEvent() {
   const [image, setImage] = useState(event.image);
   const navigate = useNavigate();
 
-  function handleCancel() {
-    navigate(-1);
-  }
-
   return (
     <div className="page">
       <h1>Update Event</h1>
-      <Form id="post-form" method="post">
-        <label htmlFor="caption">Caption</label>
-        <input
-          id="caption"
-          defaultValue={event.caption}
-          name="caption"
-          type="text"
-          aria-label="caption"
-          placeholder="Write a caption..."
-        />
-        <label htmlFor="image">Image URL</label>
-        <input
-          name="image"
-          defaultValue={event.image}
-          type="url"
-          onChange={(e) => setImage(e.target.value)}
-          placeholder="Paste an image URL..."
-        />
-
-        <label htmlFor="image-preview">Image Preview</label>
-        <img
-          id="image-preview"
-          className="image-preview"
-          src={
-            image
-              ? image
-              : "https://placehold.co/600x400?text=Paste+an+image+URL"
-          }
-          alt="Choose"
-          onError={(e) =>
-            (e.target.src =
-              "https://placehold.co/600x400?text=Error+loading+image")
-          }
-        />
-
-        <input name="uid" type="text" defaultValue={event.uid} hidden />
-        <div className="btns">
-          <button>Save</button>
-          <button type="button" className="btn-cancel" onClick={handleCancel}>
-            Cancel
-          </button>
-        </div>
-      </Form>
+      <EntryForm event={event} />
     </div>
   );
 }
 
 export async function action({ request, params }) {
+  const eventId = await mongoose.models.Event.findById(params.eventId).populate(
+    "user",
+  );
+  let session = await getSession(request.headers.get("Cookie"));
+  if (session.data.user._id != eventId.user._id) {
+    throw new Response("not authorized", { status: 401 });
+  }
   const formData = await request.formData();
   const event = Object.fromEntries(formData);
 
   await mongoose.models.Event.findByIdAndUpdate(params.eventId, {
-    caption: event.caption,
+    title: event.title,
     image: event.image,
+    description: event.description,
   });
 
   return redirect(`/events/${params.eventId}`);
