@@ -204,7 +204,7 @@ async function insertData() {
       time: "8:00",
       address: "City Park",
       image:
-        "https://img.freepik.com/free-photo/disabled-man-running-full-shot_23-2149003148.jpg?t=st=1710260938~exp=1710264538~hmac=139f13a1b9037e4ecd0ad58bc780cea96e75bf8100e34202b6ced88cbda91896&w=2000",
+        "https://images.pexels.com/photos/1199590/pexels-photo-1199590.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
       user: alex._id,
       registrations: [maria._id, rasmus._id, john._id, emily._id],
       comments: [
