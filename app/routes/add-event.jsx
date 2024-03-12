@@ -1,7 +1,6 @@
 import { json, redirect } from "@remix-run/node";
-import { Form, useActionData, useNavigate } from "@remix-run/react";
+import { useActionData } from "@remix-run/react";
 import mongoose, { mongo } from "mongoose";
-import { useState } from "react";
 import { authenticator } from "../services/auth.server";
 import EntryForm from "~/components/Entry-Form";
 
@@ -16,11 +15,9 @@ export async function loader({ request }) {
 }
 
 export default function AddPost() {
-  const actionData = useActionData();
-  console.log("add-event actionData", actionData);
   return (
-    <div className="page">
-      <h1>Add a Event</h1>
+    <div className="px-[5%]">
+      <h1 className="text-[30px] font-bold text-center">Add a Event</h1>
       <EntryForm />
     </div>
   );
@@ -36,6 +33,9 @@ export async function action({ request }) {
       title: formData.get("title"),
       image: formData.get("image"),
       description: formData.get("description"),
+      date: new Date(formData.get("date")),
+      time: formData.get("time"),
+      location: formData.get("location"),
       user: authUser._id,
     });
     await newEvent.save();

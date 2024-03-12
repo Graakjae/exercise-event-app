@@ -30,8 +30,6 @@ export async function loader({ params, request }) {
 
 export default function UpdateEvent() {
   const { event } = useLoaderData();
-  const [image, setImage] = useState(event.image);
-  const navigate = useNavigate();
 
   return (
     <div className="page">
@@ -50,13 +48,28 @@ export async function action({ request, params }) {
     throw new Response("not authorized", { status: 401 });
   }
   const formData = await request.formData();
-  const event = Object.fromEntries(formData);
+  try {
+    const event = Object.fromEntries(formData);
+    const validation = { runValidators: true };
+    await mongoose.models.Event.findByIdAndUpdate(
+      params.eventId,
+      {
+        title: event.title,
+        image: event.image,
+        description: event.description,
+        date: new Date(event.date),
+        time: event.time,
+        location: event.location,
+      },
+      validation,
+    );
 
-  await mongoose.models.Event.findByIdAndUpdate(params.eventId, {
-    title: event.title,
-    image: event.image,
-    description: event.description,
-  });
-
-  return redirect(`/events/${params.eventId}`);
+    return redirect(`/events/${params.eventId}`);
+  } catch (error) {
+    console.error(error);
+    return json(
+      { errors: error.errors, values: Object.fromEntries(formData) },
+      { status: 400 },
+    );
+  }
 }
