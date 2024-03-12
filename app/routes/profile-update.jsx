@@ -42,33 +42,6 @@ export default function UpdateProfile() {
           aria-label="name"
           placeholder="Write a name..."
         />
-        <label htmlFor="title">Title</label>
-        <input
-          id="title"
-          defaultValue={user.title}
-          name="title"
-          type="text"
-          aria-label="title"
-          placeholder="Write a title..."
-        />
-        <label htmlFor="educations">Educations</label>
-        <input
-          id="educations"
-          defaultValue={user.educations}
-          name="educations"
-          type="text"
-          aria-label="educations"
-          placeholder="Write your educations..."
-        />
-        <label htmlFor="mail">Mail</label>
-        <input
-          id="mail"
-          defaultValue={user.mail}
-          name="mail"
-          type="email"
-          aria-label="mail"
-          placeholder="Write your mail..."
-        />
         <label htmlFor="image">Image URL</label>
         <input
           name="image"
@@ -122,9 +95,6 @@ export async function action({ request }) {
   await mongoose.models.User.findByIdAndUpdate(user._id, {
     name: userChanges.name,
     image: userChanges.image,
-    title: userChanges.title,
-    educations: userChanges.educations,
-    mail: userChanges.mail,
   });
 
   console.log("User updated successfully!");
