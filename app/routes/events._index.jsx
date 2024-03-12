@@ -88,7 +88,7 @@ export default function Index() {
   }
 
   return (
-    <section className="p-4 md:px-[5%]">
+    <section className="p-4 md:px-[5%] mt-14">
       <Form
         className="gap-4 flex flex-col mb-8 w-full"
         id="search-form"

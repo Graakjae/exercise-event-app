@@ -171,7 +171,7 @@ export default function Event() {
           </div>
           <div className="flex gap-1 items-center">
             <img
-              src={theme === "light" ? "/clock-white.png" : "/clock-black.png"}
+              src={theme === "light" ? "/clock-black.png" : "/clock-white.png"}
               alt="clock"
               className="w-4 h-4"
             />
