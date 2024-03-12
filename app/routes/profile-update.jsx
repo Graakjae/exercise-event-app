@@ -82,13 +82,13 @@ export default function UpdateProfile() {
               }
             />
           </div>
-          <div className="md:flex md:flex-row-reverse md:justify-center md:gap-4 mt-4">
-            <button className="w-[150px] text-white p-2 md:p-0 bg-[#635FC7] rounded-md md:h-[40px]">
+          <div className="flex flex-row-reverse justify-center gap-4 mt-4">
+            <button className="w-[150px] text-white p-2  bg-[#635FC7] rounded-md h-[40px]">
               Save
             </button>
             <button
               type="button"
-              className={`p-2 rounded-md mt-2 mb-4 md:mt-0 md:mb-0 md:h-[40px] w-full md:w-[150px] text-black bg-[#d4d4d4]`}
+              className={`p-2 rounded-md mb-4   h-[40px] w-[150px] text-black bg-[#d4d4d4]`}
               onClick={handleCancel}
             >
               Cancel
@@ -105,20 +105,13 @@ export async function action({ request }) {
     failureRedirect: "/signin",
   });
 
-  console.log("User before form data parsing:", user);
-
   const formData = await request.formData();
-  console.log("Form Data:", formData);
-
   const userChanges = Object.fromEntries(formData);
-  console.log("User Changes:", userChanges);
 
   await mongoose.models.User.findByIdAndUpdate(user._id, {
     name: userChanges.name,
     image: userChanges.image,
   });
-
-  console.log("User updated successfully!");
 
   return redirect(`/profile`);
 }

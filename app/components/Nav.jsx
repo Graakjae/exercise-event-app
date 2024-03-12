@@ -81,7 +81,7 @@ export default function Nav() {
                 <Switch />
                 {links &&
                   links.map((link, i) => (
-                    <div className=" md:mr-[30px] mt-[20px]">
+                    <div className=" md:mr-[30px] mt-[20px]" key={link.to}>
                       <NavLink
                         to={`${link.to}`}
                         initial={{ opacity: 0 }}

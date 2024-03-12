@@ -27,7 +27,6 @@ export default function SignUp() {
   const [image, setImage] = useState();
   const theme = useStore(useThemeStore, (state) => state.theme);
 
-  console.log("loaderData", loaderData);
   return (
     <div className="flex justify-center px-[5%] mt-10">
       <div>

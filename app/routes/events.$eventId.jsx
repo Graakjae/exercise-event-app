@@ -37,7 +37,6 @@ export default function Event() {
   const theme = useStore(useThemeStore, (state) => state.theme);
   const fetcher = useFetcher();
   const navigate = useNavigate();
-  console.log("fetcher", fetcher);
   function confirmDelete(event) {
     const response = confirm("Please confirm you want to delete this event.");
     if (!response) {
@@ -55,7 +54,6 @@ export default function Event() {
         setComment("");
     }
   }, [fetcher.data, fetcher.error]);
-  console.log("event", event);
   return (
     <div id="event-page" className="md:px-[5%] md:mt-10">
       <div className="relative">
@@ -320,15 +318,17 @@ export default function Event() {
         <div className="mb-10 mt-6">
           {event.comments.map((comment) => (
             <div key={comment._id} className="flex gap-1 my-4">
-              <img
-                src={
-                  comment?.commentedBy?.image || "/defaultprofilePicture.png"
-                }
-                alt={comment?.commentedBy?.name}
-                className="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#635FC7]"
-              />
+              <div className="w-[50px]">
+                <img
+                  src={
+                    comment?.commentedBy?.image || "/defaultprofilePicture.png"
+                  }
+                  alt={comment?.commentedBy?.name}
+                  className="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#635FC7]"
+                />
+              </div>
               <div
-                className={`${theme !== "light" ? "bg-[#313131]" : "bg-[#e4e4e4]"} rounded-lg p-2`}
+                className={`${theme !== "light" ? "bg-[#313131]" : "bg-[#e4e4e4]"} rounded-lg p-2 w-full`}
               >
                 <p className="font-semibold">{comment?.commentedBy?.name}</p>
                 <p className="font-light">{comment.commentText}</p>
@@ -365,7 +365,6 @@ export async function action({ request, params }) {
       { new: true },
     );
 
-    console.log("registrationbumbam", registration);
     return json({ registration });
   }
   if (_action === "comment") {

@@ -11,7 +11,6 @@ export default function EntryForm({ event }) {
 
   const [image, setImage] = useState(event?.image);
   const navigate = useNavigate();
-  console.log(fetcher);
   return (
     <fetcher.Form
       method="post"

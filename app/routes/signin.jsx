@@ -33,7 +33,6 @@ export default function SignIn() {
   const theme = useStore(useThemeStore, (state) => state.theme);
   // if i got an error it will come back with the loader dxata
   const loaderData = useLoaderData();
-  console.log("loaderData", loaderData);
   return (
     <div id="sign-in-page" className="flex justify-center px-[5%] mt-10">
       <div>

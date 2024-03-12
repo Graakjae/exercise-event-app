@@ -64,7 +64,6 @@ export default function Index() {
   const [defaultValue, setDefaultValue] = useState("");
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  console.log(sortBy, "sortBy");
   const theme = useStore(useThemeStore, (state) => state.theme);
   const [filter, setFilter] = useState("Date");
   useEffect(() => {
@@ -86,7 +85,6 @@ export default function Index() {
       replace: !isFirstSearch,
     });
   }
-  console.log(events);
   return (
     <section className="p-4 md:px-[5%] mt-14 mb-10">
       <Form

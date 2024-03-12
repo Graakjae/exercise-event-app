@@ -32,7 +32,6 @@ export default function Profile() {
       event.preventDefault();
     }
   }
-  console.log("user", user, events, registeredEvents);
   return (
     <div id="profile-page" className="flex justify-center w-full px-[5%] mt-10">
       <div className="w-full justify-center">
