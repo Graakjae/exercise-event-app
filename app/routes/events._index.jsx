@@ -16,12 +16,12 @@ export async function loader({ request }) {
   const url = new URL(request.url);
   const q = url.searchParams.get("q") || "";
   const sortBy = url.searchParams.get("sort-by") || "createdAt";
-  const filterTag = url.searchParams.get("tag") || "";
 
   // Assuming you want to sort in ascending order.
   // If you need descending order for some fields, you might need to adjust the logic accordingly.
   const sortOption = {};
-  sortOption[sortBy] = sortBy != "caption" ? -1 : 1; // Use -1 here if you want to sort in descending order by default
+  sortOption[sortBy] = sortBy != "title" ? -1 : 1; // Use -1 here if you want to sort in descending order by default
+
   const date = url.searchParams.get("date");
 
   const query = {
@@ -34,44 +34,39 @@ export async function loader({ request }) {
       $lt: new Date(date + "T23:59:59.999Z"),
     };
   }
-  if (filterTag) {
-    query.tags = filterTag;
-  }
 
-  // const uniqueTags = await mongoose.models.Post.aggregate([
-  //   // Unwind the array of tags to make each tag a separate document
-  //   { $unwind: "$tags" },
-  //   // Group by the tag to eliminate duplicates
-  //   { $group: { _id: "$tags" } },
-  //   // Optionally, you might want to sort the tags alphabetically
-  //   { $sort: { _id: 1 } },
-  //   // Project to get the desired output format, if needed
-  //   { $project: { tag: "$_id", _id: 0 } },
-  // ]);
-
-  // Extract just the tags from the results
-  // const tags = uniqueTags.map((tagDoc) => tagDoc.tag);
-  //date filter
-
-  const events = await mongoose.models.Event.find(query)
+  let events = await mongoose.models.Event.find(query)
     .sort(sortOption)
     .populate("user")
     .populate("registrations")
     .exec();
+
+  // Calculate the count of registrations for each event
+  events = events.map((event) => {
+    const registrationCount = event.registrations.length;
+    return { ...event.toObject(), registrationCount };
+  });
+
+  if (sortBy === "registrations") {
+    events.sort((a, b) => {
+      return sortOption[sortBy] * (a.registrationCount - b.registrationCount);
+    });
+  }
+
   const session = await getSession(request.headers.get("Cookie"));
 
-  return { events, session, q, sortBy, filterTag };
+  return { events, session, q, sortBy };
 }
 
 export default function Index() {
-  const { events, session, q, sortBy, filterTag, tags, date } = useLoaderData();
+  const { events, q, sortBy } = useLoaderData();
   const submit = useSubmit();
   const [defaultValue, setDefaultValue] = useState("");
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
-
+  console.log(sortBy, "sortBy");
   const theme = useStore(useThemeStore, (state) => state.theme);
-
+  const [filter, setFilter] = useState(sortBy);
   useEffect(() => {
     // Get the URL parameters
     const params = new URLSearchParams(window.location.search);
@@ -92,7 +87,6 @@ export default function Index() {
     });
   }
 
-  console.log(events, "defaultValue");
   return (
     <section className="p-4 md:px-[5%]">
       <Form
@@ -104,7 +98,7 @@ export default function Index() {
         <label className="flex flex-col text-[18px] font-semibold">
           Search for a event
           <input
-            aria-label="Search by caption"
+            aria-label="Search by Title"
             placeholder="Search"
             type="search"
             name="q"
@@ -113,7 +107,7 @@ export default function Index() {
             className={`p-2 border border-gray-300 rounded-md w-full md:w-[100%] fill-transparent text-black`}
           />
         </label>
-        <div className="md:flex md:items-end">
+        <div className="md:flex md:items-end md:gap-4">
           <div className="flex flex-col">
             <label htmlFor="date" className="mb-1 text-[18px] font-semibold">
               Date
@@ -128,16 +122,32 @@ export default function Index() {
               onChange={(event) => setDefaultValue(event.target.value)}
             />
           </div>
+          <label>
+            Sort by{" "}
+            <select
+              name="sort-by"
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className={`p-2 border border-gray-300 rounded-md w-full h-[50px] fill-transparent text-black`}
+            >
+              <option value="createdAt">Newest</option>
+              <option value="title">A-Z</option>
+              <option value="registrations">Popular events</option>
+            </select>
+          </label>
           <button
             type="button"
             onClick={() => {
               setDefaultValue("");
               setSearch("");
+              setFilter("createdAt");
 
               // Navigate to the same page without query parameters
-              navigate("/events", { replace: true });
+              navigate("/events", {
+                replace: true,
+              });
             }}
-            className="p-2 bg-[#635FC7] text-white rounded-md h-[50px] md:ml-4 w-full md:w-auto mt-6 md:mt-0"
+            className="p-2 bg-[#635FC7] text-white rounded-md h-[50px] w-full md:w-auto mt-6 md:mt-0"
           >
             Reset Filters
           </button>
