@@ -8,7 +8,7 @@ import EntryForm from "~/components/Entry-Form";
 export function meta() {
   return [
     {
-      title: "Event App - Update Event",
+      title: "Go exercise - Update Event",
     },
   ];
 }
