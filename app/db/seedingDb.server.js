@@ -44,29 +44,140 @@ async function insertData() {
     password: "1234",
   });
 
-  // Insert posts
   await Event.insertMany([
     {
-      title: "Beautiful sunset at the beach",
-      image:
-        "https://images.unsplash.com/photo-1566241832378-917a0f30db2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      user: maria._id,
-      tags: ["beach", "sunset", "nature", "Aarhus"],
-    },
-    {
-      title: "Exploring the city streets of Aarhus",
-      image:
-        "https://images.unsplash.com/photo-1559070169-a3077159ee16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1pYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+      title: "Yoga and Meditation Workshop",
+      description:
+        "Join us for a relaxing session of yoga and meditation. Learn various yoga poses and meditation techniques to improve your physical and mental well-being.",
+      date: new Date(),
+      time: "9:00 AM",
+      location: "Zen Garden Yoga Studio",
+      image: "yoga.jpg",
       user: dan._id,
-      tags: ["city", "Aarhus", "exploration"],
+      tags: ["yoga", "meditation", "workshop"],
     },
-
     {
-      title: "Exploring the city center of Aarhus",
-      image:
-        "https://images.unsplash.com/photo-1612624629424-ddde915d3dc5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1pYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
-      user: rasmus._id,
-      tags: ["city", "Aarhus", "exploration", "cityhall"],
+      title: "High-Intensity Interval Training (HIIT)",
+      description:
+        "Get ready for an intense workout session with our HIIT program. Burn calories, build endurance, and boost your metabolism with this high-energy workout.",
+      date: new Date(),
+      time: "6:00 PM",
+      location: "FitZone Gym",
+      image: "hiit.jpg",
+      user: dan._id,
+      tags: ["HIIT", "fitness", "workout"],
     },
+    {
+      title: "Zumba Dance Party",
+      description:
+        "Dance to the rhythm and feel the energy with our Zumba Dance Party! Join us for an exhilarating session of dance and fitness.",
+      date: new Date(),
+      time: "7:30 PM",
+      location: "Dance Central Studio",
+      image: "zumba.jpg",
+      user: dan._id,
+      tags: ["Zumba", "dance", "fitness"],
+    },
+    {
+      title: "Running Club Meetup",
+      description:
+        "Join our running club meetup and explore the scenic routes in the city. Whether you're a beginner or an experienced runner, everyone is welcome!",
+      date: new Date(),
+      time: "8:00 AM",
+      location: "City Park",
+      image: "running.jpg",
+      user: dan._id,
+      tags: ["running", "club", "meetup"],
+    },
+    {
+      title: "Pilates for Beginners",
+      description:
+        "Discover the benefits of Pilates with our beginner-friendly class. Improve your core strength, flexibility, and posture in a supportive environment.",
+      date: new Date(),
+      time: "10:00 AM",
+      location: "Pilates Studio",
+      image: "pilates.jpg",
+      user: dan._id,
+      tags: ["pilates", "fitness", "beginner"],
+    },
+    {
+      title: "Cycling Adventure",
+      description:
+        "Embark on a cycling adventure through scenic routes and breathtaking landscapes. All skill levels are welcome!",
+      date: new Date(),
+      time: "11:00 AM",
+      location: "Countryside",
+      image: "cycling.jpg",
+      user: dan._id,
+      tags: ["cycling", "adventure", "outdoor"],
+    },
+    // Placeholder for additional events
+    {
+      title: "CrossFit Challenge",
+      description:
+        "Test your limits with our CrossFit Challenge! Push yourself to the max and experience the ultimate full-body workout.",
+      date: new Date(),
+      time: "6:30 PM",
+      location: "CrossFit Arena",
+      image: "crossfit.jpg",
+      user: dan._id,
+      tags: ["CrossFit", "challenge", "fitness"],
+    },
+    {
+      title: "Martial Arts Seminar",
+      description:
+        "Join us for a Martial Arts Seminar and learn self-defense techniques, discipline, and respect in a supportive environment.",
+      date: new Date(),
+      time: "5:00 PM",
+      location: "Martial Arts Academy",
+      image: "martial-arts.jpg",
+      user: dan._id,
+      tags: ["martial arts", "seminar", "self-defense"],
+    },
+    {
+      title: "Swimming Workshop",
+      description:
+        "Dive into the world of swimming with our comprehensive workshop. Learn different strokes, improve technique, and boost confidence in the water.",
+      date: new Date(),
+      time: "4:00 PM",
+      location: "Aquatic Center",
+      image: "swimming.jpg",
+      user: dan._id,
+      tags: ["swimming", "workshop", "fitness"],
+    },
+    {
+      title: "Rock Climbing Adventure",
+      description:
+        "Embark on an adrenaline-pumping rock climbing adventure! Conquer challenging routes and experience breathtaking views from the top.",
+      date: new Date(),
+      time: "12:00 PM",
+      location: "Rock Climbing Gym",
+      image: "rock-climbing.jpg",
+      user: dan._id,
+      tags: ["rock climbing", "adventure", "outdoor"],
+    },
+    {
+      title: "Dance Fitness Fusion",
+      description:
+        "Experience the perfect blend of dance and fitness with our Dance Fitness Fusion class. Get ready to groove, sweat, and have fun!",
+      date: new Date(),
+      time: "7:00 PM",
+      location: "Dance Fitness Studio",
+      image: "dance-fitness.jpg",
+      user: dan._id,
+      tags: ["dance fitness", "fusion", "workout"],
+    },
+    {
+      title: "Boxing Bootcamp",
+      description:
+        "Join our Boxing Bootcamp and unleash your inner warrior! Improve strength, speed, and agility while learning proper boxing techniques.",
+      date: new Date(),
+      time: "6:00 AM",
+      location: "Boxing Gym",
+      image: "boxing.jpg",
+      user: dan._id,
+      tags: ["boxing", "bootcamp", "fitness"],
+    },
+    // Add more placeholders for events here
   ]);
 }

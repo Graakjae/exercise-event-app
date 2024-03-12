@@ -1,6 +1,6 @@
-import { Form, Link, useLoaderData, useSubmit } from "@remix-run/react";
+import { Form, useLoaderData, useSubmit } from "@remix-run/react";
 import { format } from "date-fns";
-import mongoose, { set } from "mongoose";
+import mongoose from "mongoose";
 import { authenticator } from "~/services/auth.server";
 import { getSession } from "~/services/session.server";
 import { useNavigate } from "react-router-dom";

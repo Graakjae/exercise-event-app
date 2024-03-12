@@ -1,10 +1,8 @@
 import { Form, Link, json, redirect, useLoaderData } from "@remix-run/react";
 import { authenticator } from "../services/auth.server";
 import mongoose from "mongoose";
-import RegistrationButton from "~/components/Registration-Button";
 import useStore from "~/store/useStore";
 import { useThemeStore } from "~/store";
-import EventCard from "~/components/EventCard";
 
 export async function loader({ request }) {
   const authUser = await authenticator.isAuthenticated(request, {
