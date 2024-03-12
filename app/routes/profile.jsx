@@ -59,7 +59,7 @@ export default function Profile() {
             </Link>
           </p>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
             {events.map((event) => (
               <Link
                 key={event._id}
@@ -90,7 +90,7 @@ export default function Profile() {
             </Link>
           </p>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6">
             {registeredEvents.map((event) => (
               <div
                 key={event._id}
