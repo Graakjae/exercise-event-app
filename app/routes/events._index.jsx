@@ -15,7 +15,7 @@ export async function loader({ request }) {
   });
   const url = new URL(request.url);
   const q = url.searchParams.get("q") || "";
-  const sortBy = url.searchParams.get("sort-by") || "createdAt";
+  const sortBy = url.searchParams.get("sort-by") || "date";
 
   // Assuming you want to sort in ascending order.
   // If you need descending order for some fields, you might need to adjust the logic accordingly.
@@ -66,7 +66,7 @@ export default function Index() {
   const [search, setSearch] = useState("");
   console.log(sortBy, "sortBy");
   const theme = useStore(useThemeStore, (state) => state.theme);
-  const [filter, setFilter] = useState(sortBy);
+  const [filter, setFilter] = useState("Date");
   useEffect(() => {
     // Get the URL parameters
     const params = new URLSearchParams(window.location.search);
@@ -127,7 +127,7 @@ export default function Index() {
           <label className="mb-1 text-[18px] font-semibold">Sort by </label>
           <select
             name="sort-by"
-            value={filter}
+            defaultValue={"date"}
             onChange={(e) => setFilter(e.target.value)}
             className={`p-2 border border-gray-300 rounded-lg w-full h-[50px] fill-transparent text-black`}
           >
@@ -141,7 +141,7 @@ export default function Index() {
           onClick={() => {
             setDefaultValue("");
             setSearch("");
-            setFilter("createdAt");
+            setFilter("date");
 
             // Navigate to the same page without query parameters
             navigate("/events", {
