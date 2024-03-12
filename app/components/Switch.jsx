@@ -15,7 +15,7 @@ export default function Switch() {
         <img
           src={theme === "light" ? "/moon.png" : "/sun.png"}
           alt={theme === "light" ? "darkmode" : "lightmode"}
-          className={`w-6 transition-opacity duration-500`}
+          className={`w-10 md:w-6 transition-opacity duration-500`}
         />
       </button>
     </div>

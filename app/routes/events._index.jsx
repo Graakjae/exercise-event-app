@@ -110,7 +110,7 @@ export default function Index() {
             name="q"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="p-2 border border-gray-300 rounded-md w-full md:w-[100%] "
+            className={`p-2 border border-gray-300 rounded-md w-full md:w-[100%] fill-transparent text-black`}
           />
         </label>
         <div className="md:flex md:items-end">
@@ -123,7 +123,7 @@ export default function Index() {
               name="date"
               id="date"
               required
-              className="p-2 border border-gray-300 rounded-md text-gray-900 h-[50px]"
+              className={`p-2 border border-gray-300 rounded-md w-full h-[50px] fill-transparent text-black`}
               value={defaultValue}
               onChange={(event) => setDefaultValue(event.target.value)}
             />

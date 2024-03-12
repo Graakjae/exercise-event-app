@@ -9,20 +9,17 @@ import {
   useRouteError,
   isRouteErrorResponse,
   useNavigate,
+  useLoaderData,
 } from "@remix-run/react";
 import styles from "./tailwind.css";
-import appStylesHref from "./app.css";
 import Nav from "~/components/Nav";
 import ThemeProvider from "./components/ThemeProvider";
+import { authenticator } from "./services/auth.server";
 
 export const links = () => [
   {
     rel: "stylesheet",
     href: styles,
-  },
-  {
-    rel: "stylesheet",
-    href: appStylesHref,
   },
 ];
 
@@ -30,7 +27,12 @@ export function meta() {
   return [{ title: "Event" }];
 }
 
+export async function loader({ request }) {
+  return await authenticator.isAuthenticated(request);
+}
+
 export default function App() {
+  const user = useLoaderData();
   return (
     <html lang="en">
       <head>
@@ -40,7 +42,7 @@ export default function App() {
         <Links />
       </head>
       <ThemeProvider>
-        <Nav />
+        {user && <Nav />}
         <Outlet />
         <ScrollRestoration />
         <Scripts />

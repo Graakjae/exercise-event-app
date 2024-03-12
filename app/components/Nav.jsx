@@ -14,7 +14,7 @@ export default function Nav() {
     { to: "/add-event", text: "Add event" },
   ];
   return (
-    <nav className="px-[5%] mt-4">
+    <nav className="px-[5%] mt-14">
       <div className="flex justify-between items-center">
         <div className="md:flex items-center gap-10 hidden ">
           {links.map((link) => (
@@ -29,7 +29,9 @@ export default function Nav() {
             </NavLink>
           ))}
         </div>
-        <Switch />
+        <div className="hidden md:block">
+          <Switch />
+        </div>
       </div>
       <AnimatePresence>
         <m.button
@@ -76,6 +78,7 @@ export default function Nav() {
                                 `}
             >
               <div className="text-center flex-col gap-4 mt-[100px]">
+                <Switch />
                 {links &&
                   links.map((link, i) => (
                     <div className=" md:mr-[30px] mt-[20px]">

@@ -28,7 +28,7 @@ export default function EntryForm({ event }) {
             aria-label="title"
             required
             defaultValue={event?.title}
-            className={`p-2 border border-gray-300 rounded-md w-full text-white fill-transparent ${theme === "light" ? "bg-white" : "bg-black"}`}
+            className={`p-2 border border-gray-300 rounded-md w-full  fill-transparent ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}
           />
         </div>
         {fetcher?.data?.errors?.title && (
