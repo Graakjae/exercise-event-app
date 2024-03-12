@@ -55,7 +55,7 @@ export default function Profile() {
           {user.name}
         </h2>
 
-        <h2 className="text-center md:text-start font-semibold text-[20px] mt-4 mb-2">
+        <h2 className="text-center md:text-start font-semibold text-[20px] md:text-[30px] mt-4 mb-2">
           Your events
         </h2>
         {events.length === 0 ? (
@@ -86,7 +86,7 @@ export default function Profile() {
           </div>
         )}
 
-        <h2 className="text-center md:text-start font-semibold text-[20px] mt-4 mb-2">
+        <h2 className="text-center md:text-start font-semibold text-[20px] md:text-[30px] mt-4 mb-2">
           You are signed up to these events
         </h2>
         {registeredEvents.length === 0 ? (
