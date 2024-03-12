@@ -118,6 +118,48 @@ async function insertData() {
         william._id,
         olivia._id,
       ],
+      comments: [
+        {
+          commentText:
+            "I'm really looking forward to this workshop! Yoga and meditation have been life-changing for me.",
+          commentedBy: maria._id,
+        },
+        {
+          commentText: "This sounds amazing! Can't wait to join!",
+          commentedBy: rasmus._id,
+        },
+        {
+          commentText: "Excited to attend! Yoga always brings such serenity.",
+          commentedBy: john._id,
+        },
+        {
+          commentText: "Looking forward to finding my inner balance!",
+          commentedBy: emily._id,
+        },
+        {
+          commentText: "Yoga has been transformative for me. Can't wait!",
+          commentedBy: alex._id,
+        },
+        {
+          commentText:
+            "I've heard great things about this workshop. Looking forward to experiencing it!",
+          commentedBy: sophia._id,
+        },
+        {
+          commentText:
+            "Yoga has been a fundamental part of my wellness routine. Looking forward to this!",
+          commentedBy: emma._id,
+        },
+        {
+          commentText:
+            "I'm excited for this workshop! It's always great to connect with others through yoga.",
+          commentedBy: william._id,
+        },
+        {
+          commentText: "Looking forward to deepening my practice!",
+          commentedBy: olivia._id,
+        },
+      ],
     },
     {
       title: "High-Intensity Interval Training (HIIT)",
@@ -128,8 +170,15 @@ async function insertData() {
       address: "FitZone Gym",
       image:
         "https://cdn.pixabay.com/photo/2021/01/13/16/46/workout-5914643_1280.jpg",
-      user: rasmus._id,
+      user: dan._id,
       registrations: [maria._id],
+      comments: [
+        {
+          commentText:
+            "HIIT workouts are the best! Can't wait to get my sweat on.",
+          commentedBy: maria._id,
+        },
+      ],
     },
     {
       title: "Zumba Dance Party",
@@ -138,10 +187,15 @@ async function insertData() {
       date: new Date(),
       time: "7:30",
       address: "Dance Central Studio",
-      image:
-        "https://cdn.pixabay.com/photo/2019/07/12/20/56/zumba-4333580_1280.jpg",
-      user: maria._id,
+      image: "zumba.jpg",
+      user: dan._id,
       registrations: [rasmus._id],
+      comments: [
+        {
+          commentText: "I love Zumba! Can't wait to join the party!",
+          commentedBy: rasmus._id,
+        },
+      ],
     },
     {
       title: "Running Club Meetup",
@@ -151,9 +205,28 @@ async function insertData() {
       time: "8:00",
       address: "City Park",
       image:
-        "https://img.freepik.com/free-photo/group-people-working-out-together-outdoors_23-2149891452.jpg?w=2000&t=st=1710259271~exp=1710259871~hmac=6cb85be9241ddc638c792f52fc911588bffb92a0425f87c01619f2a944772b9b",
+        "https://img.freepik.com/free-photo/disabled-man-running-full-shot_23-2149003148.jpg?t=st=1710260938~exp=1710264538~hmac=139f13a1b9037e4ecd0ad58bc780cea96e75bf8100e34202b6ced88cbda91896&w=2000",
       user: alex._id,
       registrations: [maria._id, rasmus._id, john._id, emily._id],
+      comments: [
+        {
+          commentText:
+            "I'm excited for the morning run! City Park is always so beautiful.",
+          commentedBy: maria._id,
+        },
+        {
+          commentText: "Looking forward to meeting everyone for the run!",
+          commentedBy: rasmus._id,
+        },
+        {
+          commentText: "First time joining the running club. Can't wait!",
+          commentedBy: john._id,
+        },
+        {
+          commentText: "Running is my favorite way to start the day!",
+          commentedBy: emily._id,
+        },
+      ],
     },
     {
       title: "Pilates for Beginners",
@@ -166,6 +239,18 @@ async function insertData() {
         "https://cdn.pixabay.com/photo/2018/01/01/01/56/yoga-3053487_1280.jpg",
       user: emily._id,
       registrations: [maria._id, john._id],
+      comments: [
+        {
+          commentText:
+            "Pilates has been great for my back pain. Excited for the class!",
+          commentedBy: maria._id,
+        },
+        {
+          commentText:
+            "I've heard Pilates is excellent for improving flexibility.",
+          commentedBy: john._id,
+        },
+      ],
     },
     {
       title: "Cycling Adventure",
@@ -178,6 +263,21 @@ async function insertData() {
         "https://cdn.pixabay.com/photo/2022/02/27/06/33/man-7036709_1280.jpg",
       user: rasmus._id,
       registrations: [maria._id, emily._id, alex._id],
+      comments: [
+        {
+          commentText: "Cycling is my favorite way to explore new places!",
+          commentedBy: maria._id,
+        },
+        {
+          commentText:
+            "Can't wait to enjoy the scenery during the cycling adventure.",
+          commentedBy: emily._id,
+        },
+        {
+          commentText: "Ready to hit the road and feel the wind in my hair!",
+          commentedBy: alex._id,
+        },
+      ],
     },
     {
       title: "CrossFit Challenge",
@@ -190,6 +290,22 @@ async function insertData() {
         "https://cdn.pixabay.com/photo/2017/03/13/20/34/tyre-push-2141096_1280.jpg",
       user: dan._id,
       registrations: [rasmus._id, emily._id, sophia._id],
+      comments: [
+        {
+          commentText:
+            "CrossFit workouts always leave me feeling so accomplished!",
+          commentedBy: rasmus._id,
+        },
+        {
+          commentText:
+            "I love the challenge of CrossFit. Can't wait to see what's in store!",
+          commentedBy: emily._id,
+        },
+        {
+          commentText: "Ready to crush it at the CrossFit Challenge!",
+          commentedBy: sophia._id,
+        },
+      ],
     },
     {
       title: "Martial Arts Seminar",
@@ -202,6 +318,22 @@ async function insertData() {
         "https://cdn.pixabay.com/photo/2017/12/22/17/19/enlogar-3033957_1280.jpg",
       user: sophia._id,
       registrations: [maria._id, john._id, emily._id],
+      comments: [
+        {
+          commentText:
+            "Excited to learn some new moves at the martial arts seminar!",
+          commentedBy: maria._id,
+        },
+        {
+          commentText:
+            "Martial arts has always fascinated me. Can't wait to get started!",
+          commentedBy: john._id,
+        },
+        {
+          commentText: "Ready to channel my inner warrior!",
+          commentedBy: emily._id,
+        },
+      ],
     },
     {
       title: "Swimming Workshop",
@@ -214,6 +346,21 @@ async function insertData() {
         "https://cdn.pixabay.com/photo/2016/03/27/21/55/girls-1284419_1280.jpg",
       user: olivia._id,
       registrations: [maria._id, alex._id, sophia._id],
+      comments: [
+        {
+          commentText:
+            "Swimming is such a refreshing workout. Can't wait for the workshop!",
+          commentedBy: maria._id,
+        },
+        {
+          commentText: "Looking forward to improving my stroke technique!",
+          commentedBy: alex._id,
+        },
+        {
+          commentText: "Ready to make a splash at the swimming workshop!",
+          commentedBy: sophia._id,
+        },
+      ],
     },
     {
       title: "Rock Climbing Adventure",
@@ -226,6 +373,17 @@ async function insertData() {
         "https://cdn.pixabay.com/photo/2017/08/07/23/50/climbing-2609319_1280.jpg",
       user: rasmus._id,
       registrations: [rasmus._id, john._id, olivia._id],
+      comments: [
+        {
+          commentText:
+            "Rock climbing is the ultimate adrenaline rush! Can't wait to climb!",
+          commentedBy: maria._id,
+        },
+        {
+          commentText: "Ready to conquer my fear of heights!",
+          commentedBy: emily._id,
+        },
+      ],
     },
     {
       title: "Dance Fitness Fusion",
@@ -238,6 +396,20 @@ async function insertData() {
         "https://img.freepik.com/free-photo/two-beautiful-slender-girls-doing-dancing-gymnastics-dance-hall_1157-13817.jpg?t=st=1710259565~exp=1710263165~hmac=cd5e168a33aa201400ad0da10cf78be98bb59545666b301810483ff757bd9894&w=2000",
       user: william._id,
       registrations: [maria._id, sophia._id, emma._id],
+      comments: [
+        {
+          commentText: "Dance fitness is my happy place! Can't wait to groove!",
+          commentedBy: maria._id,
+        },
+        {
+          commentText: "So excited for the dance fitness fusion class!",
+          commentedBy: sophia._id,
+        },
+        {
+          commentText: "Ready to let loose and dance my heart out!",
+          commentedBy: emma._id,
+        },
+      ],
     },
     {
       title: "Boxing Bootcamp",
@@ -250,8 +422,21 @@ async function insertData() {
         "https://img.freepik.com/free-photo/two-muscular-boxers-have-competition-ring-they-are-wearing-helmets-gloves_613910-13128.jpg?t=st=1710259618~exp=1710263218~hmac=d15052d6d9f7d3bf52dd13943c0bb31ad9e374b42cec6ab594105a99f0287908&w=2000",
       user: emma._id,
       registrations: [rasmus._id, emily._id, william._id],
+      comments: [
+        {
+          commentText:
+            "Boxing bootcamp is always a challenge, but so rewarding!",
+          commentedBy: maria._id,
+        },
+        {
+          commentText: "Can't wait to feel the burn at boxing bootcamp!",
+          commentedBy: sophia._id,
+        },
+        {
+          commentText: "Ready to lace up my gloves and kick some butt!",
+          commentedBy: emily._id,
+        },
+      ],
     },
-
-    // Add more placeholders for events here
   ]);
 }

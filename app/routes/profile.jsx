@@ -38,7 +38,7 @@ export default function Profile() {
       <div className="w-full justify-center">
         <div className="flex justify-center">
           <img
-            src={user.image ? user.image : "/clock-black.png"}
+            src={user.image ? user.image : "/default-profilePicture.png"}
             alt="avatar"
             className="w-[200px] h-[200px] rounded-full object-cover border-2 border-white"
           />

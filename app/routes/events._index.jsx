@@ -90,13 +90,15 @@ export default function Index() {
   return (
     <section className="p-4 md:px-[5%] mt-14">
       <Form
-        className="gap-4 flex flex-col mb-8 w-full"
+        className="gap-4 flex flex-col md:flex-row md:items-end mb-8 md:mb-0 w-full"
         id="search-form"
         role="search"
         onChange={handleSearchFilterAndSort}
       >
-        <label className="flex flex-col text-[18px] font-semibold">
-          Search for a event
+        <div className="flex flex-col text-[18px] font-semibold md:w-[40%]">
+          <label className="mb-1 text-[18px] font-semibold">
+            Search for a event
+          </label>
           <input
             aria-label="Search by Title"
             placeholder="Search"
@@ -104,54 +106,52 @@ export default function Index() {
             name="q"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className={`p-2 border border-gray-300 rounded-md w-full md:w-[100%] fill-transparent text-black`}
+            className={`p-2 border border-gray-300 rounded-md w-full md:w-[100%] fill-transparent text-black h-[50px]`}
           />
-        </label>
-        <div className="md:flex md:items-end md:gap-4">
-          <div className="flex flex-col">
-            <label htmlFor="date" className="mb-1 text-[18px] font-semibold">
-              Date
-            </label>
-            <input
-              type="date"
-              name="date"
-              id="date"
-              required
-              className={`p-2 border border-gray-300 rounded-md w-full h-[50px] fill-transparent text-black`}
-              value={defaultValue}
-              onChange={(event) => setDefaultValue(event.target.value)}
-            />
-          </div>
-          <label>
-            Sort by{" "}
-            <select
-              name="sort-by"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-              className={`p-2 border border-gray-300 rounded-md w-full h-[50px] fill-transparent text-black`}
-            >
-              <option value="createdAt">Newest</option>
-              <option value="title">A-Z</option>
-              <option value="registrations">Popular events</option>
-            </select>
-          </label>
-          <button
-            type="button"
-            onClick={() => {
-              setDefaultValue("");
-              setSearch("");
-              setFilter("createdAt");
-
-              // Navigate to the same page without query parameters
-              navigate("/events", {
-                replace: true,
-              });
-            }}
-            className="p-2 bg-[#635FC7] text-white rounded-md h-[50px] w-full md:w-auto mt-6 md:mt-0"
-          >
-            Reset Filters
-          </button>
         </div>
+        <div className="flex flex-col">
+          <label htmlFor="date" className="mb-1 text-[18px] font-semibold">
+            Date
+          </label>
+          <input
+            type="date"
+            name="date"
+            id="date"
+            required
+            className={`p-2 border border-gray-300 rounded-md w-full h-[50px] fill-transparent text-black`}
+            value={defaultValue}
+            onChange={(event) => setDefaultValue(event.target.value)}
+          />
+        </div>
+        <div>
+          <label className="mb-1 text-[18px] font-semibold">Sort by </label>
+          <select
+            name="sort-by"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className={`p-2 border border-gray-300 rounded-md w-full h-[50px] fill-transparent text-black`}
+          >
+            <option value="createdAt">Newest</option>
+            <option value="title">A-Z</option>
+            <option value="registrations">Popular events</option>
+          </select>
+        </div>
+        <button
+          type="button"
+          onClick={() => {
+            setDefaultValue("");
+            setSearch("");
+            setFilter("createdAt");
+
+            // Navigate to the same page without query parameters
+            navigate("/events", {
+              replace: true,
+            });
+          }}
+          className="p-2 bg-[#635FC7] text-white rounded-md h-[50px] w-full md:w-auto mt-6 md:mt-0"
+        >
+          Reset Filters
+        </button>
       </Form>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center mt-8">
         {events.map((event) => (
