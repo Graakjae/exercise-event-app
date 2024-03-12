@@ -47,7 +47,7 @@ export default function EventCard({ event, theme }) {
                 className="w-4 h-4"
               />
 
-              <p className="">{event.location}</p>
+              <p className="">{event.address}</p>
             </div>
             <div className="flex gap-2 items-center">
               <img

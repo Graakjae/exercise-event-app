@@ -167,7 +167,7 @@ export default function Event() {
               className="w-4 h-4"
             />
 
-            <p className="text-[15px] font-medium">{event.location}</p>
+            <p className="text-[15px] font-medium">{event.address}</p>
           </div>
           <div className="flex gap-1 items-center">
             <img
@@ -332,21 +332,25 @@ export default function Event() {
             )}
           </fieldset>
         </fetcher.Form>
-        {event.comments.map((comment) => (
-          <div key={comment._id} className="flex gap-2 my-2">
-            <img
-              src={comment?.commentedBy?.image || "/default-profilePicture.png"}
-              alt={comment?.commentedBy?.name}
-              className="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#635FC7]"
-            />
-            <div
-              className={`${theme !== "light" ? "bg-[#313131]" : "bg-[#e4e4e4]"} rounded-lg p-2`}
-            >
-              <p className="font-semibold">{comment?.commentedBy?.name}</p>
-              <p className="font-light">{comment.commentText}</p>
+        <div className="mb-10">
+          {event.comments.map((comment) => (
+            <div key={comment._id} className="flex gap-2 my-2">
+              <img
+                src={
+                  comment?.commentedBy?.image || "/default-profilePicture.png"
+                }
+                alt={comment?.commentedBy?.name}
+                className="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#635FC7]"
+              />
+              <div
+                className={`${theme !== "light" ? "bg-[#313131]" : "bg-[#e4e4e4]"} rounded-lg p-2`}
+              >
+                <p className="font-semibold">{comment?.commentedBy?.name}</p>
+                <p className="font-light">{comment.commentText}</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

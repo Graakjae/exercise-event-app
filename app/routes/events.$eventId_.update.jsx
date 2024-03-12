@@ -60,7 +60,7 @@ export async function action({ request, params }) {
         description: event.description,
         date: new Date(event.date),
         time: event.time,
-        location: event.location,
+        address: event.address,
       },
       validation,
     );

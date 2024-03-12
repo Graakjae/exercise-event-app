@@ -37,7 +37,7 @@ export async function action({ request }) {
       description: formData.get("description"),
       date: new Date(formData.get("date")),
       time: formData.get("time"),
-      location: formData.get("location"),
+      address: formData.get("address"),
       user: authUser._id,
     });
     await newEvent.save();

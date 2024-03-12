@@ -13,26 +13,13 @@ async function insertData() {
   const User = mongoose.models.User;
   const Event = mongoose.models.Event;
 
-  console.log("Dropping collections...");
-  await User.collection.drop();
-  await Event.collection.drop();
-
   console.log("Inserting data...");
-  // Insert users
-  const maria = await User.create({
-    image:
-      "https://www.baaa.dk/media/b5ahrlra/maria-louise-bendixen.jpg?anchor=center&mode=crop&width=800&height=450&rnd=132792921650330000&format=webp",
-    mail: "mlbe@eaaa.dk",
-    name: "Maria Louise Bendixen",
-    password: "maria1234",
-  });
-
+  // Insert users and events here
   const rasmus = await User.create({
     _id: new mongoose.Types.ObjectId("65cde4cb0d09cb615a23db17"),
     image: "https://share.cederdorff.dk/images/race.webp",
     mail: "race@eaaa.dk",
     name: "Rasmus Cederdorff",
-
     password: "rasmus1234",
   });
 
@@ -44,140 +31,227 @@ async function insertData() {
     password: "1234",
   });
 
+  const maria = await User.create({
+    _id: new mongoose.Types.ObjectId("65cde4cb0d09cb615a23db18"),
+    image:
+      "https://images.pexels.com/photos/10669639/pexels-photo-10669639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    mail: "maria@example.com",
+    name: "Maria Smith",
+    password: "maria1234",
+  });
+
+  const john = await User.create({
+    image:
+      "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=3687&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    mail: "john@example.com",
+    name: "John Doe",
+    password: "john1234",
+  });
+
+  const emily = await User.create({
+    image:
+      "https://images.pexels.com/photos/12192379/pexels-photo-12192379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    mail: "emily@example.com",
+    name: "Emily Brown",
+    password: "emily1234",
+  });
+
+  const alex = await User.create({
+    image:
+      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=3580&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    mail: "alex@example.com",
+    name: "Alex Johnson",
+    password: "alex1234",
+  });
+
+  const sophia = await User.create({
+    image:
+      "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    mail: "sophia@example.com",
+    name: "Sophia Wilson",
+    password: "sophia1234",
+  });
+
+  const emma = await User.create({
+    image:
+      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    mail: "emma@example.com",
+    name: "Emma Taylor",
+    password: "emma1234",
+  });
+
+  const william = await User.create({
+    image: "",
+    mail: "william@example.com",
+    name: "William Garcia",
+    password: "william1234",
+  });
+
+  const olivia = await User.create({
+    image:
+      "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    mail: "olivia@example.com",
+    name: "Olivia Rodriguez",
+    password: "olivia1234",
+  });
+
   await Event.insertMany([
     {
       title: "Yoga and Meditation Workshop",
       description:
-        "Join us for a relaxing session of yoga and meditation. Learn various yoga poses and meditation techniques to improve your physical and mental well-being.",
-      date: new Date(),
-      time: "9:00 AM",
-      location: "Zen Garden Yoga Studio",
-      image: "yoga.jpg",
+        "Join us for a deeply enriching session of yoga and meditation. Explore the ancient practices of Hatha and Vinyasa yoga, coupled with mindfulness meditation techniques. Discover inner peace, balance, and harmony as you connect with your body and mind.",
+      date: "2024-03-15T00:00:00.000Z",
+      time: "9:00",
+      address: "Zen Garden Yoga Studio",
+      image:
+        "https://cdn.pixabay.com/photo/2017/11/18/05/00/woman-2959213_1280.jpg",
       user: dan._id,
-      tags: ["yoga", "meditation", "workshop"],
+      registrations: [
+        maria._id,
+        rasmus._id,
+        rasmus._id,
+        john._id,
+        emily._id,
+        alex._id,
+        sophia._id,
+        emma._id,
+        william._id,
+        olivia._id,
+      ],
     },
     {
       title: "High-Intensity Interval Training (HIIT)",
       description:
-        "Get ready for an intense workout session with our HIIT program. Burn calories, build endurance, and boost your metabolism with this high-energy workout.",
+        "Embark on a heart-pounding journey with our High-Intensity Interval Training (HIIT) program. Experience bursts of intense exercise followed by short recovery periods, designed to torch calories and elevate your fitness levels. Get ready to sweat, burn, and achieve your fitness goals!",
       date: new Date(),
-      time: "6:00 PM",
-      location: "FitZone Gym",
-      image: "hiit.jpg",
-      user: dan._id,
-      tags: ["HIIT", "fitness", "workout"],
+      time: "6:00",
+      address: "FitZone Gym",
+      image:
+        "https://cdn.pixabay.com/photo/2021/01/13/16/46/workout-5914643_1280.jpg",
+      user: rasmus._id,
+      registrations: [maria._id],
     },
     {
       title: "Zumba Dance Party",
       description:
-        "Dance to the rhythm and feel the energy with our Zumba Dance Party! Join us for an exhilarating session of dance and fitness.",
+        "Let loose and dance your heart out at our electrifying Zumba Dance Party! Groove to infectious rhythms, shake off stress, and burn calories while having the time of your life. Join our vibrant community and experience the joy of dance fitness!",
       date: new Date(),
-      time: "7:30 PM",
-      location: "Dance Central Studio",
-      image: "zumba.jpg",
-      user: dan._id,
-      tags: ["Zumba", "dance", "fitness"],
+      time: "7:30",
+      address: "Dance Central Studio",
+      image:
+        "https://cdn.pixabay.com/photo/2019/07/12/20/56/zumba-4333580_1280.jpg",
+      user: maria._id,
+      registrations: [rasmus._id],
     },
     {
       title: "Running Club Meetup",
       description:
-        "Join our running club meetup and explore the scenic routes in the city. Whether you're a beginner or an experienced runner, everyone is welcome!",
+        " Lace up your running shoes and join our energetic community for a scenic run through the heart of the city. Whether you're a seasoned runner or just starting out, our inclusive club welcomes all fitness levels. Come explore, connect, and embrace the runner's high!",
       date: new Date(),
-      time: "8:00 AM",
-      location: "City Park",
-      image: "running.jpg",
-      user: dan._id,
-      tags: ["running", "club", "meetup"],
+      time: "8:00",
+      address: "City Park",
+      image:
+        "https://img.freepik.com/free-photo/group-people-working-out-together-outdoors_23-2149891452.jpg?w=2000&t=st=1710259271~exp=1710259871~hmac=6cb85be9241ddc638c792f52fc911588bffb92a0425f87c01619f2a944772b9b",
+      user: alex._id,
+      registrations: [maria._id, rasmus._id, john._id, emily._id],
     },
     {
       title: "Pilates for Beginners",
       description:
-        "Discover the benefits of Pilates with our beginner-friendly class. Improve your core strength, flexibility, and posture in a supportive environment.",
+        "Embark on a journey of self-discovery with our Pilates for Beginners class. Delve into the foundational principles of Pilates, focusing on core stability, alignment, and mindful movement. Strengthen your body, improve posture, and cultivate a deeper connection between mind and body.",
       date: new Date(),
-      time: "10:00 AM",
-      location: "Pilates Studio",
-      image: "pilates.jpg",
-      user: dan._id,
-      tags: ["pilates", "fitness", "beginner"],
+      time: "10:00",
+      address: "Pilates Studio",
+      image:
+        "https://cdn.pixabay.com/photo/2018/01/01/01/56/yoga-3053487_1280.jpg",
+      user: emily._id,
+      registrations: [maria._id, john._id],
     },
     {
       title: "Cycling Adventure",
       description:
-        "Embark on a cycling adventure through scenic routes and breathtaking landscapes. All skill levels are welcome!",
+        "Experience the thrill of the open road with our exhilarating Cycling Adventure! Discover new horizons, breathe in the fresh air, and challenge yourself as you pedal through picturesque landscapes. Whether you're a leisure cyclist or avid rider, this adventure is for you!",
       date: new Date(),
-      time: "11:00 AM",
-      location: "Countryside",
-      image: "cycling.jpg",
-      user: dan._id,
-      tags: ["cycling", "adventure", "outdoor"],
+      time: "11:00",
+      address: "Countryside",
+      image:
+        "https://cdn.pixabay.com/photo/2022/02/27/06/33/man-7036709_1280.jpg",
+      user: rasmus._id,
+      registrations: [maria._id, emily._id, alex._id],
     },
-    // Placeholder for additional events
     {
       title: "CrossFit Challenge",
       description:
-        "Test your limits with our CrossFit Challenge! Push yourself to the max and experience the ultimate full-body workout.",
+        "Unleash your inner warrior and push your limits with our CrossFit Challenge! Test your strength, endurance, and mental resilience as you tackle a series of intense workouts designed to take you to the next level. Are you ready to rise to the challenge?",
       date: new Date(),
-      time: "6:30 PM",
-      location: "CrossFit Arena",
-      image: "crossfit.jpg",
+      time: "6:30",
+      address: "CrossFit Arena",
+      image:
+        "https://cdn.pixabay.com/photo/2017/03/13/20/34/tyre-push-2141096_1280.jpg",
       user: dan._id,
-      tags: ["CrossFit", "challenge", "fitness"],
+      registrations: [rasmus._id, emily._id, sophia._id],
     },
     {
       title: "Martial Arts Seminar",
       description:
-        "Join us for a Martial Arts Seminar and learn self-defense techniques, discipline, and respect in a supportive environment.",
+        "Immerse yourself in the ancient traditions of martial arts with our Martial Arts Seminar. Learn self-defense techniques, cultivate discipline, and enhance your physical and mental well-being in a supportive and empowering environment. Join us on the path to mastery!",
       date: new Date(),
-      time: "5:00 PM",
-      location: "Martial Arts Academy",
-      image: "martial-arts.jpg",
-      user: dan._id,
-      tags: ["martial arts", "seminar", "self-defense"],
+      time: "5:00",
+      address: "Martial Arts Academy",
+      image:
+        "https://cdn.pixabay.com/photo/2017/12/22/17/19/enlogar-3033957_1280.jpg",
+      user: sophia._id,
+      registrations: [maria._id, john._id, emily._id],
     },
     {
       title: "Swimming Workshop",
       description:
-        "Dive into the world of swimming with our comprehensive workshop. Learn different strokes, improve technique, and boost confidence in the water.",
+        "Dive into the world of swimming with our comprehensive Swimming Workshop. From beginners to advanced swimmers, our expert instructors will guide you through stroke technique, breathing exercises, and water safety skills. Discover the joy and freedom of swimming!",
       date: new Date(),
-      time: "4:00 PM",
-      location: "Aquatic Center",
-      image: "swimming.jpg",
-      user: dan._id,
-      tags: ["swimming", "workshop", "fitness"],
+      time: "4:00",
+      address: "Aquatic Center",
+      image:
+        "https://cdn.pixabay.com/photo/2016/03/27/21/55/girls-1284419_1280.jpg",
+      user: olivia._id,
+      registrations: [maria._id, alex._id, sophia._id],
     },
     {
       title: "Rock Climbing Adventure",
       description:
-        "Embark on an adrenaline-pumping rock climbing adventure! Conquer challenging routes and experience breathtaking views from the top.",
+        "Challenge gravity and conquer new heights with our Rock Climbing Adventure! Explore vertical landscapes, navigate challenging routes, and experience the thrill of reaching the summit. Whether you're a seasoned climber or beginner, this adventure will push your limits!",
       date: new Date(),
-      time: "12:00 PM",
-      location: "Rock Climbing Gym",
-      image: "rock-climbing.jpg",
-      user: dan._id,
-      tags: ["rock climbing", "adventure", "outdoor"],
+      time: "12:00",
+      address: "Rock Climbing Gym",
+      image:
+        "https://cdn.pixabay.com/photo/2017/08/07/23/50/climbing-2609319_1280.jpg",
+      user: rasmus._id,
+      registrations: [rasmus._id, john._id, olivia._id],
     },
     {
       title: "Dance Fitness Fusion",
       description:
-        "Experience the perfect blend of dance and fitness with our Dance Fitness Fusion class. Get ready to groove, sweat, and have fun!",
+        "Experience the ultimate fusion of dance and fitness with our Dance Fitness Fusion class. Ignite your passion for movement, sweat it out on the dance floor, and sculpt your body with dynamic choreography. Join our community and let the rhythm move you!",
       date: new Date(),
-      time: "7:00 PM",
-      location: "Dance Fitness Studio",
-      image: "dance-fitness.jpg",
-      user: dan._id,
-      tags: ["dance fitness", "fusion", "workout"],
+      time: "7:00",
+      address: "Dance Fitness Studio",
+      image:
+        "https://img.freepik.com/free-photo/two-beautiful-slender-girls-doing-dancing-gymnastics-dance-hall_1157-13817.jpg?t=st=1710259565~exp=1710263165~hmac=cd5e168a33aa201400ad0da10cf78be98bb59545666b301810483ff757bd9894&w=2000",
+      user: william._id,
+      registrations: [maria._id, sophia._id, emma._id],
     },
     {
       title: "Boxing Bootcamp",
       description:
-        "Join our Boxing Bootcamp and unleash your inner warrior! Improve strength, speed, and agility while learning proper boxing techniques.",
+        "Unleash your fighting spirit and transform your body with our Boxing Bootcamp. Learn the fundamentals of boxing technique, build strength, and enhance your cardiovascular endurance in a high-energy, supportive environment. Get ready to punch, sweat, and conquer!",
       date: new Date(),
-      time: "6:00 AM",
-      location: "Boxing Gym",
-      image: "boxing.jpg",
-      user: dan._id,
-      tags: ["boxing", "bootcamp", "fitness"],
+      time: "6:00",
+      address: "Boxing Gym",
+      image:
+        "https://img.freepik.com/free-photo/two-muscular-boxers-have-competition-ring-they-are-wearing-helmets-gloves_613910-13128.jpg?t=st=1710259618~exp=1710263218~hmac=d15052d6d9f7d3bf52dd13943c0bb31ad9e374b42cec6ab594105a99f0287908&w=2000",
+      user: emma._id,
+      registrations: [rasmus._id, emily._id, william._id],
     },
+
     // Add more placeholders for events here
   ]);
 }

@@ -85,14 +85,14 @@ export default function EntryForm({ event }) {
         </div>
 
         <div className="mt-4">
-          <label htmlFor="location">Location</label>
+          <label htmlFor="address">Address</label>
           <input
             type="text"
-            name="location"
-            id="location"
-            placeholder="Type a location for your event..."
+            name="address"
+            id="address"
+            placeholder="Type a address for your event..."
             required
-            defaultValue={event?.location}
+            defaultValue={event?.address}
             className={`p-2 border border-gray-300 rounded-md w-full ${theme === "light" ? "bg-white" : "bg-black"}`}
           />
         </div>
