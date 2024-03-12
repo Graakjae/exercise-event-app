@@ -72,71 +72,7 @@ export default function Event() {
         />
       </div>
       <div className="w-full px-2 md:px-0">
-        <div className="flex justify-between items-center">
-          <h2 className="text-[30px] font-bold">{event.title}</h2>
-          {event.user._id === session && (
-            <img
-              onClick={() => setIsMoreOpen(!isMoreOpen)}
-              src={theme === "light" ? "/more-black.png" : "/more-white.png"}
-              alt="more"
-              className="w-5 h-5 cursor-pointer"
-            />
-          )}
-        </div>
-        {isMoreOpen && (
-          <div className="fixed w-[100svw] h-[100svh] top-0 left-0 flex items-center justify-center z-50">
-            <div
-              className={`${
-                theme === "light" ? "bg-white" : "bg-gray-500"
-              } w-[50%] md:w-[500px] rounded-[6px] p-8 z-20 relative`}
-            >
-              <div className="w-full text-center md:flex md:justify-center md:gap-10 ">
-                <Form
-                  action="update"
-                  className="flex items-center gap-2 cursor-pointer"
-                >
-                  <img
-                    src={
-                      theme === "light"
-                        ? "/editing-black.png"
-                        : "/editing-white.png"
-                    }
-                    alt="editing event"
-                    className="w-6 h-6"
-                  />
-
-                  <button className="text-center font-bold text-[20px] py-2">
-                    Edit event
-                  </button>
-                </Form>
-                <Form
-                  action="destroy"
-                  method="post"
-                  onSubmit={confirmDelete}
-                  className="flex items-center gap-2 cursor-pointer"
-                >
-                  <img
-                    src={
-                      theme === "light"
-                        ? "/delete-black.png"
-                        : "/delete-white.png"
-                    }
-                    alt="delete event"
-                    className="w-6 h-6"
-                  />
-
-                  <button className="text-center font-bold text-[20px] py-2">
-                    Delete event
-                  </button>
-                </Form>
-              </div>
-            </div>
-            <div
-              className="bg-black/50 inset-0 fixed w-[100svw]"
-              onClick={() => setIsMoreOpen(false)}
-            />
-          </div>
-        )}
+        <h2 className="text-[30px] font-bold">{event.title}</h2>
 
         <div className="relative flex gap-6 w-full">
           {event.date && (
@@ -252,6 +188,48 @@ export default function Event() {
                 </button>
               </fieldset>
             </fetcher.Form>
+            {event.user._id === session && (
+              <div className="w-full text-center flex justify-center gap-10 mt-4 ">
+                <Form
+                  action="update"
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <img
+                    src={
+                      theme === "light"
+                        ? "/editing-black.png"
+                        : "/editing-white.png"
+                    }
+                    alt="editing event"
+                    className="w-6 h-6"
+                  />
+
+                  <button className="text-center font-bold text-[20px] py-2">
+                    Edit event
+                  </button>
+                </Form>
+                <Form
+                  action="destroy"
+                  method="post"
+                  onSubmit={confirmDelete}
+                  className="flex items-center gap-2 cursor-pointer"
+                >
+                  <img
+                    src={
+                      theme === "light"
+                        ? "/delete-black.png"
+                        : "/delete-white.png"
+                    }
+                    alt="delete event"
+                    className="w-6 h-6"
+                  />
+
+                  <button className="text-center font-bold text-[20px] py-2">
+                    Delete event
+                  </button>
+                </Form>
+              </div>
+            )}
           </div>
         </div>
 

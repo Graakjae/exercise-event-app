@@ -16,11 +16,10 @@ async function insertData() {
   console.log("Inserting data...");
   // Insert users and events here
   const rasmus = await User.create({
-    _id: new mongoose.Types.ObjectId("65cde4cb0d09cb615a23db17"),
     image: "https://share.cederdorff.dk/images/race.webp",
     mail: "race@eaaa.dk",
     name: "Rasmus Cederdorff",
-    password: "rasmus1234",
+    password: "1234",
   });
 
   const dan = await User.create({

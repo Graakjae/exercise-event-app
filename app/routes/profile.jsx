@@ -78,23 +78,7 @@ export default function Profile() {
             ))}
           </div>
         )}
-        {/* <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-6">
-          {events.map((event) => (
-            <Link
-              to={`/events/${event._id}`}
-              className={`shadow-lg  rounded-md  flex flex-col justify-between ${theme === "light" ? "bg-white" : "bg-black"}`}
-            >
-              <img
-                src={event.image}
-                alt={event.caption}
-                className="w-full h-[150px] md:h-[250px] object-cover rounded-t-md"
-              />
-              <h2 className="text-[20px] p-2 font-semibold mb-2 overflow-hidden text-ellipsis w-full whitespace-nowrap">
-                {event.title}
-              </h2>
-            </Link>
-          ))}
-        </div> */}
+
         <h2 className="text-center md:text-start font-semibold text-[20px] mt-4 mb-2">
           You are signed up to these events
         </h2>
