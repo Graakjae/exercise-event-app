@@ -5,7 +5,7 @@ import { authenticator } from "../services/auth.server";
 import EntryForm from "~/components/Entry-Form";
 
 export const meta = () => {
-  return [{ title: "Event app - Add New Post" }];
+  return [{ title: "Go exercise - Add new event" }];
 };
 
 export async function loader({ request }) {
@@ -16,7 +16,7 @@ export async function loader({ request }) {
 
 export default function AddPost() {
   return (
-    <div className="px-[5%] justify-center flex">
+    <div className="px-[5%] lg:px-[10%] justify-center flex">
       <div>
         <h1 className="text-[30px] font-bold text-center">Add a Event</h1>
         <EntryForm />

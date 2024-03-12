@@ -31,9 +31,7 @@ export default function EventCard({ event, theme }) {
                   className="w-4 h-4"
                 />
 
-                <p className="">
-                  {format(new Date(event?.date), "MMMM, dd, yyyy")}
-                </p>
+                <p className="">{format(new Date(event?.date), "dd. MMMM")}</p>
               </div>
             )}
             <div className="flex gap-2 items-center">
@@ -64,22 +62,20 @@ export default function EventCard({ event, theme }) {
           </div>
           <div className="w-full flex justify-end">
             <div>
-              <div className="flex gap-2 justify-center items-center ml-[-15px]">
-                <img
-                  src={
-                    theme === "light"
-                      ? "/people-black.png"
-                      : "/people-white.png"
-                  }
-                  alt="people"
-                  className="w-4 h-4 mt-1"
-                />
-                {event.registrations?.length === 0 ? (
-                  <p>No one signed up yet</p>
-                ) : (
+              {event.registrations?.length === 0 ? null : (
+                <div className="flex gap-2 justify-center items-center ml-[-15px]">
+                  <img
+                    src={
+                      theme === "light"
+                        ? "/people-black.png"
+                        : "/people-white.png"
+                    }
+                    alt="people"
+                    className="w-4 h-4 mt-1"
+                  />
                   <p>{event.registrations?.length} signed up</p>
-                )}
-              </div>
+                </div>
+              )}
               <div className="flex">
                 {event.registrations?.slice(0, 4).map((registration) => (
                   <img

@@ -14,7 +14,7 @@ export default function Nav() {
     { to: "/add-event", text: "Add event" },
   ];
   return (
-    <nav className="px-[5%] md:mt-6">
+    <nav className="px-[5%]  md:mt-6">
       <div className="md:flex justify-between items-center hidden">
         <div className="md:flex items-center gap-10">
           {links.map((link) => (

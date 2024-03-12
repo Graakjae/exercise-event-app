@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export function meta({ data }) {
   return [
     {
-      title: `Event App - ${data.event.title || "Event"}`,
+      title: `Go exercise - ${data.event.title || "Event"}`,
     },
   ];
 }
@@ -55,7 +55,7 @@ export default function Event() {
     }
   }, [fetcher.data, fetcher.error]);
   return (
-    <div id="event-page" className="md:px-[5%] md:mt-10">
+    <div id="event-page" className="md:px-[5%] lg:px-[10%] md:mt-10">
       <div className="relative">
         <img
           src="/arrow-left.png"
@@ -66,7 +66,7 @@ export default function Event() {
         <img
           src={event.image}
           alt={event.title}
-          className="w-full md:h-[600px]  object-cover md:rounded-md"
+          className="w-full md:h-[600px] lg:h-[700px]  object-cover md:rounded-md"
         />
       </div>
       <div className="w-full px-2 md:px-0">
@@ -86,7 +86,7 @@ export default function Event() {
               />
 
               <p className="text-[15px] font-medium">
-                {format(new Date(event?.date), "MMMM, dd, yyyy")}
+                {format(new Date(event?.date), "dd. MMMM yyyy")}
               </p>
             </div>
           )}
@@ -143,8 +143,11 @@ export default function Event() {
                   alt="people"
                   className="w-6 h-6 mt-1"
                 />
-
-                <p>{event.registrations.length} are going to this event</p>
+                {event.registrations.length === 0 ? (
+                  <p>No one signed up yet</p>
+                ) : (
+                  <p>{event.registrations.length} are going to this event</p>
+                )}
               </div>
               <div className="flex">
                 {event.registrations.slice(0, 6).map((registration) => (

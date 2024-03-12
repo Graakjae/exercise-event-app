@@ -4,6 +4,14 @@ import mongoose from "mongoose";
 import useStore from "~/store/useStore";
 import { useThemeStore } from "~/store";
 
+export function meta() {
+  return [
+    {
+      title: "Go exercise - Profile page",
+    },
+  ];
+}
+
 export async function loader({ request }) {
   const authUser = await authenticator.isAuthenticated(request, {
     failureRedirect: "/signin",

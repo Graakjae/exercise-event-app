@@ -86,7 +86,7 @@ export default function Index() {
     });
   }
   return (
-    <section className="p-4 md:px-[5%] mt-14 mb-10">
+    <section className="p-4 px-[5%]  mt-14 mb-10">
       <Form
         className="gap-4 flex flex-col lg:flex-row lg:items-end mb-8 lg:mb-0 w-full"
         id="search-form"
