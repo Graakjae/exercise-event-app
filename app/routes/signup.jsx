@@ -3,18 +3,7 @@ import { authenticator } from "../services/auth.server";
 import { sessionStorage } from "../services/session.server";
 import { json, redirect } from "@remix-run/node";
 import mongoose from "mongoose";
-
-export async function action({ request }) {
-  const formData = await request.formData(); // get the form data
-  const newUser = Object.fromEntries(formData); // convert the form data to an object
-  const result = mongoose.models.User(newUser); // create a new user document
-  await result.save(); // save the user document
-  if (result) {
-    return redirect("/signin");
-  } else {
-    return redirect("/signup");
-  }
-}
+import { useState } from "react";
 
 export async function loader({ request }) {
   // If the user is already authenticated redirect to /posts directly
@@ -33,6 +22,8 @@ export async function loader({ request }) {
 export default function SignUp() {
   // if i got an error it will come back with the loader dxata
   const loaderData = useLoaderData();
+  const [image, setImage] = useState();
+
   console.log("loaderData", loaderData);
   return (
     <div id="sign-up-page" className="page">
@@ -64,6 +55,30 @@ export default function SignUp() {
           aria-label="name"
           placeholder="Type your name..."
         />
+        <label htmlFor="image">Image URL</label>
+        <input
+          name="image"
+          type="url"
+          onChange={(e) => setImage(e.target.value)}
+          placeholder="Paste an image URL..."
+          defaultValue={event?.image}
+        />
+
+        <label htmlFor="image-preview">Image Preview</label>
+        <img
+          id="image-preview"
+          className="image-preview"
+          src={
+            image
+              ? image
+              : "https://placehold.co/600x400?text=Paste+an+image+URL"
+          }
+          alt="Choose"
+          onError={(e) =>
+            (e.target.src =
+              "https://placehold.co/600x400?text=Error+loading+image")
+          }
+        />
 
         <div className="error-message">
           {loaderData?.error ? <p>{loaderData?.error?.message}</p> : null}
@@ -77,4 +92,16 @@ export default function SignUp() {
       </p>
     </div>
   );
+}
+
+export async function action({ request }) {
+  const formData = await request.formData(); // get the form data
+  const newUser = Object.fromEntries(formData); // convert the form data to an object
+  const result = mongoose.models.User(newUser); // create a new user document
+  await result.save(); // save the user document
+  if (result) {
+    return redirect("/signin");
+  } else {
+    return redirect("/signup");
+  }
 }
