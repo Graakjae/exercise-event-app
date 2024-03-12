@@ -1,12 +1,17 @@
-import { useActionData, useFetcher, useNavigate } from "@remix-run/react";
+import { useFetcher, useNavigate } from "@remix-run/react";
 import { format } from "date-fns";
+import { useThemeStore } from "~/store";
+import useStore from "~/store/useStore";
 import { useState } from "react";
+
 export default function EntryForm({ event }) {
   const fetcher = useFetcher();
+  const theme = useStore(useThemeStore, (state) => state.theme);
+  const [startDate, setStartDate] = useState("");
+
   const [image, setImage] = useState(event?.image);
   const navigate = useNavigate();
-  const actionData = useActionData();
-  console.log("entryform actiondata", actionData);
+  console.log(fetcher);
   return (
     <fetcher.Form id="post-form" method="post" className="mt-2">
       <fieldset
@@ -21,12 +26,14 @@ export default function EntryForm({ event }) {
             id="title"
             placeholder="Type your title..."
             aria-label="title"
-            className="w-full text-gray-700"
             required
             defaultValue={event?.title}
+            className={`p-2 border border-gray-300 rounded-md w-full text-white fill-transparent ${theme === "light" ? "bg-white" : "bg-black"}`}
           />
         </div>
-        {actionData?.errors.title && <p>{actionData.errors.title.message}</p>}
+        {fetcher?.data?.errors?.title && (
+          <p>{fetcher.data.errors.title.message}</p>
+        )}
 
         <div className="mt-4">
           <label htmlFor="description">Description</label>
@@ -35,57 +42,103 @@ export default function EntryForm({ event }) {
             name="description"
             id="description"
             aria-label="description"
-            placeholder="Type your entry..."
-            className="w-full text-gray-700"
+            placeholder="Type your description..."
+            className={`p-2 border border-gray-300 rounded-md w-full ${theme === "light" ? "bg-white" : "bg-black"}`}
             required
             defaultValue={event?.description}
           />
         </div>
-        {actionData?.errors.description && (
-          <p>{actionData.errors.description.message}</p>
+        {fetcher?.data?.errors?.description && (
+          <p>{fetcher.data.errors.description.message}</p>
         )}
+        <div className="flex justify-between w-full">
+          <div className="mt-4 flex flex-col w-[45%]">
+            <label htmlFor="date">Date</label>
+            <input
+              type="date"
+              name="date"
+              id="date"
+              required
+              className={`p-2 border border-gray-300 rounded-md w-[160px] md:w-[100%] bg-black  ${theme === "light" ? "bg-white" : "bg-black"}`}
+              defaultValue={
+                event == undefined
+                  ? format(new Date(), "yyyy-MM-dd")
+                  : format(new Date(event?.date), "yyyy-MM-dd")
+              }
+            />
+          </div>
 
-        <label htmlFor="image">Image URL</label>
-        <input
-          name="image"
-          type="url"
-          onChange={(e) => setImage(e.target.value)}
-          placeholder="Paste an image URL..."
-          defaultValue={event?.image}
-        />
+          <div className="mt-4 flex flex-col w-[45%]">
+            <label htmlFor="time">Time</label>
+            <input
+              type="time"
+              name="time"
+              id="time"
+              required
+              defaultValue={event?.time}
+              className={`p-2 border border-gray-300 rounded-md w-[160px] md:w-[100%] ${theme === "light" ? "bg-white" : "bg-black"}`}
+            />
+          </div>
+        </div>
 
-        <label htmlFor="image-preview">Image Preview</label>
-        <img
-          id="image-preview"
-          className="image-preview"
-          src={
-            image
-              ? image
-              : "https://placehold.co/600x400?text=Paste+an+image+URL"
-          }
-          alt="Choose"
-          onError={(e) =>
-            (e.target.src =
-              "https://placehold.co/600x400?text=Error+loading+image")
-          }
-        />
-        {actionData?.errors.image && <p>{actionData.errors.image.message}</p>}
-
-        <div className="mt-2 text-right">
+        <div className="mt-4">
+          <label htmlFor="location">Location</label>
+          <input
+            type="text"
+            name="location"
+            id="location"
+            placeholder="Type a location for your event..."
+            required
+            defaultValue={event?.location}
+            className={`p-2 border border-gray-300 rounded-md w-full ${theme === "light" ? "bg-white" : "bg-black"}`}
+          />
+        </div>
+        <div className="mt-4">
+          <label htmlFor="image">Image URL</label>
+          <input
+            name="image"
+            type="url"
+            onChange={(e) => setImage(e.target.value)}
+            placeholder="Paste an image URL..."
+            defaultValue={event?.image}
+            className={`p-2 border border-gray-300 rounded-md w-full ${theme === "light" ? "bg-white" : "bg-black"}`}
+          />
+        </div>
+        <div className="mt-4">
+          <label htmlFor="image-preview">Image Preview</label>
+          <img
+            id="image-preview"
+            className="w-full h-[200px] md:h-[600px] object-cover rounded-md mt-2 border-2 border-gray-300"
+            src={
+              image
+                ? image
+                : theme === "light"
+                  ? "/default-image-black.png"
+                  : "/default-image-white.png"
+            }
+            alt="Choose"
+          />
+        </div>
+        {fetcher?.data?.errors?.image && (
+          <p>{fetcher.data.errors.image.message}</p>
+        )}
+        <div className="md:flex md:flex-row-reverse md:justify-center md:gap-4">
+          <div className="mt-2 text-right md:mt-0 ">
+            <button
+              type="submit"
+              className="bg-[#635FC7] text-white p-2 rounded-md mt-2 mb-4 w-full md:w-[150px]"
+            >
+              {fetcher.state !== "idle" ? "Creating event..." : "Create event"}
+            </button>
+          </div>
           <button
-            type="submit"
-            className="bg-blue-500 px-4 py-1 font-semibold text-white"
+            type="button"
+            className={`p-2 rounded-md mt-2 mb-4 w-full md:w-[150px] text-black bg-[#d4d4d4]`}
+            onClick={() => navigate(-1)}
           >
-            {fetcher.state !== "idle" ? "Saving..." : "Save"}
+            Cancel
           </button>
         </div>
-        <button
-          type="button"
-          className="btn-cancel"
-          onClick={() => navigate(-1)}
-        >
-          Cancel
-        </button>
       </fieldset>
     </fetcher.Form>
   );
