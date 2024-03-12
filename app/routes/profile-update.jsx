@@ -9,7 +9,7 @@ import { useThemeStore } from "~/store";
 export function meta() {
   return [
     {
-      title: "Event - Profile Update",
+      title: "Go exercise - Profile Update",
     },
   ];
 }
