@@ -33,37 +33,31 @@ userSchema.pre("save", async function (next) {
   next(); // continue
 });
 
-// const entrySchema = new mongoose.Schema(
-//   {
-//     date: {
-//       type: Date,
-//       required: true,
-//     },
-//     type: {
-//       type: String,
-//       enum: ["work", "learning", "interesting-thing"],
-//       required: true,
-//     },
-//     text: {
-//       type: String,
-//       required: true,
-//     },
-//   },
-//   // Automatically add `createdAt` and `updatedAt` timestamps:
-//   // https://mongoosejs.com/docs/timestamps.html
-//   { timestamps: true },
-// );
-
-// For each model you want to create, please define the model's name, the
-// associated schema (defined above), and the name of the associated collection
-// in the database (which will be created automatically).
 const eventSchema = new mongoose.Schema(
   {
     title: {
       type: String,
       required: true,
       minLength: [3, "Too short, min is 3 characters"],
-      maxLength: [60, "Too long, max is 60 characters"],
+      maxLength: [50, "Too long, max is 60 characters"],
+    },
+    description: {
+      type: String,
+      required: true,
+      minLength: [3, "Too short, min is 3 characters"],
+      maxLength: [1000, "Too long, max is 500 characters"],
+    },
+    date: {
+      type: Date,
+      required: true,
+    },
+    time: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
     },
     image: {
       type: String,
@@ -72,19 +66,32 @@ const eventSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      default: new mongoose.Types.ObjectId("65cde4cb0d09cb615a23db17"),
     },
-    likes: Number,
+    registrations: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    comments: [
+      {
+        commentText: {
+          type: String,
+          required: true,
+          minLength: [1, "Comment too short, min is 1 character"],
+          maxLength: [1000, "Comment too long, max is 1000 characters"],
+        },
+        commentedBy: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+      },
+    ],
     tags: [String],
   },
   { timestamps: true },
 );
 export const models = [
-  // {
-  //   name: "Entry",
-  //   schema: entrySchema,
-  //   collection: "entries",
-  // },
   { name: "User", schema: userSchema, collection: "users" },
   { name: "Event", schema: eventSchema, collection: "events" },
 ];
