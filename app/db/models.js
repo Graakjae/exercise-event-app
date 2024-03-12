@@ -41,14 +41,14 @@ const eventSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      minLength: [3, "Too short, min is 3 characters"],
-      maxLength: [50, "Too long, max is 60 characters"],
+      minLength: [3, "Title must be at least 3 characters"],
+      maxLength: [50, "Title must be at most 50 characters"],
     },
     description: {
       type: String,
       required: true,
-      minLength: [3, "Too short, min is 3 characters"],
-      maxLength: [1000, "Too long, max is 500 characters"],
+      minLength: [3, "Description must be at least 3 characters"],
+      maxLength: [1000, "Description must be at most 1000 characters"],
     },
     date: {
       type: Date,
@@ -98,53 +98,3 @@ export const models = [
   { name: "User", schema: userSchema, collection: "users" },
   { name: "Event", schema: eventSchema, collection: "events" },
 ];
-
-// async function insertData() {
-//   const User = mongoose.models.User;
-
-//   await User.collection.drop();
-
-//   // const entries = [
-//   //   {
-//   //     date: new Date("2024-01-01"),
-//   //     type: "work",
-//   //     text: "I'm working",
-//   //   },
-//   //   {
-//   //     date: new Date("2024-01-15"),
-//   //     type: "learning",
-//   //     text: "I'm learning",
-//   //   },
-//   //   {
-//   //     date: new Date("2024-02-01"),
-//   //     type: "interesting-thing",
-//   //     text: "I'm doing something interesting",
-//   //   },
-//   //   {
-//   //     date: new Date("2024-02-15"),
-//   //     type: "learning",
-//   //     text: "Remix Auth with FormStrategy and Post App",
-//   //   },
-//   //   {
-//   //     date: new Date("2024-02-22"),
-//   //     type: "work",
-//   //     text: "Remix Work Journal",
-//   //   },
-//   // ];
-//   const users = [
-//     {
-//       email: "test@123.com",
-//       password: "123",
-//       name: "test",
-//     },
-//     //one more user
-//     {
-//       email: "test@1234.com",
-//       password: "1234",
-//       name: "test2",
-//     },
-//   ];
-
-//   // await mongoose.models.Entry.insertMany(entries);
-//   await mongoose.models.User.insertMany(users);
-// }

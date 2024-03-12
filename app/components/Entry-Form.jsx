@@ -34,7 +34,7 @@ export default function EntryForm({ event }) {
           />
         </div>
         {fetcher?.data?.errors?.title && (
-          <p>{fetcher.data.errors.title.message}</p>
+          <p className="text-red-500">{fetcher.data.errors.title.message}</p>
         )}
 
         <div className="mt-4">
@@ -51,7 +51,9 @@ export default function EntryForm({ event }) {
           />
         </div>
         {fetcher?.data?.errors?.description && (
-          <p>{fetcher.data.errors.description.message}</p>
+          <p className="text-red-500">
+            {fetcher.data.errors.description.message}
+          </p>
         )}
         <div className="flex justify-between w-full">
           <div className="mt-4 flex flex-col w-[45%]">
@@ -122,7 +124,7 @@ export default function EntryForm({ event }) {
           />
         </div>
         {fetcher?.data?.errors?.image && (
-          <p>{fetcher.data.errors.image.message}</p>
+          <p className="text-red-500">{fetcher.data.errors.image.message}</p>
         )}
         <div className="md:flex md:flex-row-reverse md:justify-center md:gap-4">
           <div className="mt-4 text-right md:mt-0 ">

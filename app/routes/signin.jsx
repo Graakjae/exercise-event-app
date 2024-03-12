@@ -49,6 +49,7 @@ export default function SignIn() {
               type="email"
               name="mail"
               aria-label="mail"
+              required
               placeholder="Type your mail..."
               className={`p-2 border border-gray-300 rounded-md w-full fill-transparent ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}
             />
@@ -60,6 +61,7 @@ export default function SignIn() {
               type="password"
               name="password"
               aria-label="password"
+              required
               placeholder="Type your password..."
               autoComplete="current-password"
               className={`p-2 border border-gray-300 rounded-md w-full fill-transparent ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}

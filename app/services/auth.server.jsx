@@ -17,25 +17,23 @@ authenticator.use(
     const user = await verifyUser({ mail, password });
 
     if (!mail || mail?.length === 0) {
-      throw new AuthorizationError("Bad Credentials: Email is required");
+      throw new AuthorizationError("Email is required");
     }
     if (typeof mail !== "string") {
-      throw new AuthorizationError("Bad Credentials: Email must be a string");
+      throw new AuthorizationError("Email must be a string");
     }
 
     if (!password || password?.length === 0) {
-      throw new AuthorizationError("Bad Credentials: Password is required");
+      throw new AuthorizationError("Password is required");
     }
     if (typeof password !== "string") {
-      throw new AuthorizationError(
-        "Bad Credentials: Password must be a string",
-      );
+      throw new AuthorizationError("Password must be a string");
     }
 
     // verify the user
     if (!user) {
       // if problem with user throw error AuthorizationError
-      throw new AuthorizationError("Bad Credentials: User not found ");
+      throw new AuthorizationError("Email or password is incorrect.");
     }
     return user;
   }),
@@ -47,7 +45,7 @@ authenticator.use(
 async function verifyUser({ mail, password }) {
   const user = await mongoose.models.User.findOne({ mail }).select("+password");
   if (!user) {
-    throw new AuthorizationError("Bad Credentials: User not found");
+    throw new AuthorizationError("Email or password is incorrect.");
   }
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
