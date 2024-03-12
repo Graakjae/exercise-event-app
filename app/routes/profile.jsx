@@ -34,11 +34,11 @@ export default function Profile() {
   }
   console.log("user", user, events, registeredEvents);
   return (
-    <div id="profile-page" className="flex justify-center w-full px-[5%]">
+    <div id="profile-page" className="flex justify-center w-full px-[5%] mt-10">
       <div className="w-full justify-center">
         <div className="flex justify-center">
           <img
-            src={user.image}
+            src={user.image || "/default-profilePicture.png"}
             alt="avatar"
             className="w-[200px] h-[200px] rounded-full object-cover border-2 border-white"
           />
@@ -62,6 +62,7 @@ export default function Profile() {
           <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-6">
             {events.map((event) => (
               <Link
+                key={event._id}
                 to={`/events/${event._id}`}
                 className={`shadow-lg  rounded-md  flex flex-col justify-between ${theme === "light" ? "bg-white" : "bg-black"}`}
               >

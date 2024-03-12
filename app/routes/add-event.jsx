@@ -16,9 +16,11 @@ export async function loader({ request }) {
 
 export default function AddPost() {
   return (
-    <div className="px-[5%]">
-      <h1 className="text-[30px] font-bold text-center">Add a Event</h1>
-      <EntryForm />
+    <div className="px-[5%] justify-center flex">
+      <div>
+        <h1 className="text-[30px] font-bold text-center">Add a Event</h1>
+        <EntryForm />
+      </div>
     </div>
   );
 }

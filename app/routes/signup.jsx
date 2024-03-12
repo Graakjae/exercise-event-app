@@ -29,11 +29,10 @@ export default function SignUp() {
 
   console.log("loaderData", loaderData);
   return (
-    <div id="sign-up-page" className="flex justify-center px-[5%] mt-10">
+    <div className="flex justify-center px-[5%] mt-10">
       <div>
         <h1 className="text-center text-[30px] font-bold">Sign up</h1>
         <Form
-          id="sign-up-form"
           method="post"
           className={`p-4 border-2 rounded-md mt-4 ${theme === "light" ? "border-black" : "border-white"}`}
         >
@@ -108,7 +107,7 @@ export default function SignUp() {
             </button>
           </div>
         </Form>
-        <p className="text-center mt-4">
+        <p className="text-center mt-4 mb-10">
           Have an account?{" "}
           <Link className="text-blue-700" to="/signin">
             Sign in here

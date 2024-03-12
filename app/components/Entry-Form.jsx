@@ -13,7 +13,10 @@ export default function EntryForm({ event }) {
   const navigate = useNavigate();
   console.log(fetcher);
   return (
-    <fetcher.Form id="post-form" method="post" className="mt-2">
+    <fetcher.Form
+      method="post"
+      className={`p-4 border-2 rounded-md mt-4 w-full ${theme === "light" ? "border-black" : "border-white"}`}
+    >
       <fieldset
         className="disabled:opacity-70"
         disabled={fetcher.state !== "idle"}
@@ -108,7 +111,7 @@ export default function EntryForm({ event }) {
           <label htmlFor="image-preview">Image Preview</label>
           <img
             id="image-preview"
-            className="w-full h-[200px] md:h-[600px] object-cover rounded-md mt-2 border-2 border-gray-300"
+            className="w-full h-[200px] md:w-[600px]  md:h-[600px] object-cover rounded-md mt-2"
             src={
               image
                 ? image
@@ -123,12 +126,12 @@ export default function EntryForm({ event }) {
           <p>{fetcher.data.errors.image.message}</p>
         )}
         <div className="md:flex md:flex-row-reverse md:justify-center md:gap-4">
-          <div className="mt-2 text-right md:mt-0 ">
+          <div className="mt-4 text-right md:mt-0 ">
             <button
               type="submit"
               className="bg-[#635FC7] text-white p-2 rounded-md mt-2 mb-4 w-full md:w-[150px]"
             >
-              {fetcher.state !== "idle" ? "Creating event..." : "Create event"}
+              {fetcher.state !== "idle" ? "Saving..." : "Save"}
             </button>
           </div>
           <button

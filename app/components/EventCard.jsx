@@ -72,13 +72,16 @@ export default function EventCard({ event, theme }) {
                   alt="people"
                   className="w-4 h-4 mt-1"
                 />
-
-                <p>{event.registrations?.length} are going</p>
+                {event.registrations?.length === 0 ? (
+                  <p>No one signed up yet</p>
+                ) : (
+                  <p>{event.registrations?.length} signed up</p>
+                )}
               </div>
               <div className="flex">
                 {event.registrations?.slice(0, 4).map((registration) => (
                   <img
-                    src={registration.image}
+                    src={registration.image || "/default-profilePicture.png"}
                     alt={registration.name}
                     className="w-[40px] h-[40px] ml-[-15px] rounded-full object-cover border-2 border-[#635FC7]"
                     key={registration._id}

@@ -31,9 +31,11 @@ export default function UpdateEvent() {
   const { event } = useLoaderData();
 
   return (
-    <div className="page">
-      <h1>Update Event</h1>
-      <EntryForm event={event} />
+    <div className="px-[5%] justify-center flex">
+      <div>
+        <h1 className="text-[30px] font-bold text-center">Update event</h1>
+        <EntryForm event={event} />
+      </div>
     </div>
   );
 }

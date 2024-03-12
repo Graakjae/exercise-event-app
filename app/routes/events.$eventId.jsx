@@ -57,7 +57,7 @@ export default function Event() {
   }, [fetcher.data, fetcher.error]);
   console.log("event", event);
   return (
-    <div id="event-page" className="md:px-[5%]">
+    <div id="event-page" className="md:px-[5%] md:mt-10">
       <div className="relative">
         <img
           src="/arrow-left.png"
@@ -141,73 +141,78 @@ export default function Event() {
         <div className="relative flex gap-6 w-full">
           {event.date && (
             <div className="flex gap-1 items-center">
-              {theme === "light" ? (
-                <img
-                  src="/calendar-black.png"
-                  alt="calendar"
-                  className="w-4 h-4"
-                />
-              ) : (
-                <img
-                  src="/calendar-white.png"
-                  alt="calendar"
-                  className="w-4 h-4"
-                />
-              )}
+              <img
+                src={
+                  theme === "light"
+                    ? "/calendar-black.png"
+                    : "/calendar-white.png"
+                }
+                alt="calendar"
+                className="w-4 h-4"
+              />
+
               <p className="text-[15px] font-medium">
                 {format(new Date(event?.date), "MMMM, dd, yyyy")}
               </p>
             </div>
           )}
           <div className="flex gap-1 items-center">
-            {theme === "light" ? (
-              <img
-                src="/location-black.png"
-                alt="location"
-                className="w-4 h-4"
-              />
-            ) : (
-              <img
-                src="/location-white.png"
-                alt="location"
-                className="w-4 h-4"
-              />
-            )}
+            <img
+              src={
+                theme === "light"
+                  ? "/location-black.png"
+                  : "/location-white.png"
+              }
+              alt="location"
+              className="w-4 h-4"
+            />
+
             <p className="text-[15px] font-medium">{event.location}</p>
           </div>
           <div className="flex gap-1 items-center">
-            {theme === "light" ? (
-              <img src="/clock-black.png" alt="clock" className="w-4 h-4" />
-            ) : (
-              <img src="/clock-white.png" alt="clock" className="w-4 h-4" />
-            )}
+            <img
+              src={theme === "light" ? "/clock-white.png" : "/clock-black.png"}
+              alt="clock"
+              className="w-4 h-4"
+            />
             <p className="text-[15px] font-medium">{event.time}</p>
+          </div>
+        </div>
+        <div className="mt-4">
+          <p className="">Event host</p>
+          <div className="flex items-center mt-1 gap-2">
+            <img
+              src={event.user.image || "/default-profilePicture.png"}
+              alt={event.user.name}
+              className="w-10 h-10 rounded-full object-cover border-2 border-[#635FC7]"
+            />
+            <p>{event.user.name}</p>
           </div>
         </div>
         <div className="md:flex md:justify-between md:w-full">
           <p className="mt-4 font-light md:w-[70%]">{event.description}</p>
           <div className="">
-            <div onClick={() => setIsRegisteredOpen(true)}>
+            <div
+              onClick={() => setIsRegisteredOpen(true)}
+              className="cursor-pointer "
+            >
               <div className="flex gap-2 items-center mr-[-5px] md:mr-0 mt-4">
-                {theme === "light" ? (
-                  <img
-                    src="/people-black.png"
-                    alt="people"
-                    className="w-6 h-6 mt-1"
-                  />
-                ) : (
-                  <img
-                    src="/people-white.png"
-                    alt="people"
-                    className="w-6 h-6 mt-1"
-                  />
-                )}
+                <img
+                  src={
+                    theme === "light"
+                      ? "/people-black.png"
+                      : "/people-white.png"
+                  }
+                  alt="people"
+                  className="w-6 h-6 mt-1"
+                />
+
                 <p>{event.registrations.length} are going to this event</p>
               </div>
               <div className="flex">
                 {event.registrations.slice(0, 6).map((registration) => (
                   <img
-                    src={registration.image}
+                    src={registration.image || "/default-profilePicture.png"}
                     alt={registration.name}
                     className="w-[40px] h-[40px] mr-[-5px] rounded-full object-cover border-2 border-[#635FC7]"
                     key={registration._id}
@@ -229,11 +234,17 @@ export default function Event() {
                 >
                   {isRegistered ? (
                     <div className="flex gap-2 justify-center items-center">
-                      <p>Registered</p>
+                      <p>
+                        {fetcher.state !== "idle"
+                          ? "Unregistering..."
+                          : "Registered"}
+                      </p>
                       <img src="/check.png" className="w-[20px] h-[20px]" />
                     </div>
                   ) : (
-                    "Register"
+                    <p>
+                      {fetcher.state !== "idle" ? "Registering..." : "Register"}
+                    </p>
                   )}
                 </button>
               </fieldset>
@@ -245,34 +256,30 @@ export default function Event() {
           <div className="fixed w-[100svw] h-[100svh] top-0 left-0 flex items-center justify-center">
             <div
               className={`${
-                theme === "light" ? "bg-white" : "bg-gray-500"
+                theme === "light" ? "bg-white" : "bg-[#1c1c1c]"
               } w-[95%] md:w-[500px] rounded-[6px] p-8 z-20 relative`}
             >
               <div className="mb-4">
                 <button
                   onClick={() => setIsRegisteredOpen(false)}
-                  className="absolute top-6 right-8 bg-gray-300 rounded-full w-[40px] h-[40px] flex items-center justify-center hover:bg-gray-600 transition-all duration-300 cursor-pointer"
+                  className={`absolute top-6 right-8  rounded-full w-[40px] h-[40px] flex items-center justify-center hover:bg-gray-600 transition-all duration-300 cursor-pointer ${theme === "light" ? "bg-[#eeeeee]" : "bg-[#313131]"}`}
                 >
-                  {theme === "light" ? (
-                    <img
-                      src="/close-black.png"
-                      alt="close"
-                      className="w-[15px]"
-                    />
-                  ) : (
-                    <img
-                      src="/close-white.png"
-                      alt="close"
-                      className="w-[15px]"
-                    />
-                  )}
+                  <img
+                    src={
+                      theme === "light"
+                        ? "/close-black.png"
+                        : "/close-white.png"
+                    }
+                    alt="close"
+                    className="w-[15px]"
+                  />
                 </button>
                 <h3 className="text-[20px] font-bold">Registered for event</h3>
               </div>
               {event.registrations.map((registration) => (
                 <div
                   key={registration._id}
-                  className="flex gap-3 items-center  mt-1 bg-gray-100 rounded-md p-2"
+                  className={`flex gap-3 items-center  mt-1  rounded-md p-2 ${theme === "light" ? "bg-[#eeeeee]" : "bg-[#313131]"}`}
                 >
                   <img
                     src={registration.image}
@@ -328,7 +335,7 @@ export default function Event() {
         {event.comments.map((comment) => (
           <div key={comment._id} className="flex gap-2 my-2">
             <img
-              src={comment?.commentedBy?.image}
+              src={comment?.commentedBy?.image || "/default-profilePicture.png"}
               alt={comment?.commentedBy?.name}
               className="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#635FC7]"
             />
