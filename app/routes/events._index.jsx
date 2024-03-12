@@ -125,7 +125,7 @@ export default function Index() {
           <label className="mb-1 text-[18px] font-semibold">Sort by </label>
           <select
             name="sort-by"
-            defaultValue={"date"}
+            value={filter}
             onChange={(e) => setFilter(e.target.value)}
             className={`p-2 border border-gray-300 rounded-lg w-full h-[50px] fill-transparent text-black`}
           >
