@@ -13,6 +13,7 @@ import {
 import styles from "./tailwind.css";
 import appStylesHref from "./app.css";
 import Nav from "~/components/Nav";
+import ThemeProvider from "./components/ThemeProvider";
 
 export const links = () => [
   {
@@ -38,14 +39,13 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
-        <h1 className="text-4xl text-center">EVENT</h1>
+      <ThemeProvider>
         <Nav />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-      </body>
+      </ThemeProvider>
     </html>
   );
 }
