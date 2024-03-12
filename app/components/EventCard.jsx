@@ -47,7 +47,9 @@ export default function EventCard({ event, theme }) {
                 className="w-4 h-4"
               />
 
-              <p className="">{event.address}</p>
+              <p className="overflow-hidden text-ellipsis w-[80%] whitespace-nowrap">
+                {event.address}
+              </p>
             </div>
             <div className="flex gap-2 items-center">
               <img
@@ -81,7 +83,7 @@ export default function EventCard({ event, theme }) {
               <div className="flex">
                 {event.registrations?.slice(0, 4).map((registration) => (
                   <img
-                    src={registration.image || "/default-profilePicture.png"}
+                    src={registration.image || "/defaultprofilePicture.png"}
                     alt={registration.name}
                     className="w-[40px] h-[40px] ml-[-15px] rounded-full object-cover border-2 border-[#635FC7]"
                     key={registration._id}

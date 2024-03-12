@@ -10,6 +10,7 @@ import {
   isRouteErrorResponse,
   useNavigate,
   useLoaderData,
+  NavLink,
 } from "@remix-run/react";
 import styles from "./tailwind.css";
 import Nav from "~/components/Nav";
@@ -42,6 +43,14 @@ export default function App() {
         <Links />
       </head>
       <ThemeProvider>
+        <h1 className="text-center my-4">
+          <NavLink
+            to="/events"
+            className="text-[30px] font-bold text-[#635FC7] text-center p-4"
+          >
+            GO EXERCISE
+          </NavLink>
+        </h1>
         {user && <Nav />}
         <Outlet />
         <ScrollRestoration />

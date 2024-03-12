@@ -20,7 +20,7 @@ export async function loader({ request }) {
   // Assuming you want to sort in ascending order.
   // If you need descending order for some fields, you might need to adjust the logic accordingly.
   const sortOption = {};
-  sortOption[sortBy] = sortBy != "title" ? -1 : 1; // Use -1 here if you want to sort in descending order by default
+  sortOption[sortBy] = 1; // Use -1 here if you want to sort in descending order by default
 
   const date = url.searchParams.get("date");
 
@@ -49,7 +49,7 @@ export async function loader({ request }) {
 
   if (sortBy === "registrations") {
     events.sort((a, b) => {
-      return sortOption[sortBy] * (a.registrationCount - b.registrationCount);
+      return sortOption[sortBy] * (b.registrationCount - a.registrationCount);
     });
   }
 
@@ -88,14 +88,14 @@ export default function Index() {
   }
   console.log(events);
   return (
-    <section className="p-4 md:px-[5%] mt-14">
+    <section className="p-4 md:px-[5%] mt-14 mb-10">
       <Form
-        className="gap-4 flex flex-col md:flex-row md:items-end mb-8 md:mb-0 w-full"
+        className="gap-4 flex flex-col lg:flex-row lg:items-end mb-8 lg:mb-0 w-full"
         id="search-form"
         role="search"
         onChange={handleSearchFilterAndSort}
       >
-        <div className="flex flex-col text-[18px] font-semibold md:w-[40%]">
+        <div className="flex flex-col text-[18px] font-semibold lg:w-[40%]">
           <label className="mb-1 text-[18px] font-semibold">
             Search for a event
           </label>
@@ -106,7 +106,7 @@ export default function Index() {
             name="q"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className={`p-2 border border-gray-300 rounded-md w-full md:w-[100%] fill-transparent text-black h-[50px]`}
+            className={`p-2 border border-gray-300 rounded-lg w-full lg:w-[100%] fill-transparent text-black h-[50px]`}
           />
         </div>
         <div className="flex flex-col">
@@ -118,7 +118,7 @@ export default function Index() {
             name="date"
             id="date"
             required
-            className={`p-2 border border-gray-300 rounded-md w-full h-[50px] fill-transparent text-black`}
+            className={`p-2 border border-gray-300 rounded-lg w-full h-[50px] fill-transparent text-black`}
             value={defaultValue}
             onChange={(event) => setDefaultValue(event.target.value)}
           />
@@ -129,9 +129,9 @@ export default function Index() {
             name="sort-by"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className={`p-2 border border-gray-300 rounded-md w-full h-[50px] fill-transparent text-black`}
+            className={`p-2 border border-gray-300 rounded-lg w-full h-[50px] fill-transparent text-black`}
           >
-            <option value="createdAt">Newest</option>
+            <option value="date">Date</option>
             <option value="title">A-Z</option>
             <option value="registrations">Popular events</option>
           </select>
@@ -153,7 +153,7 @@ export default function Index() {
           Reset Filters
         </button>
       </Form>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 justify-center mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center mt-8">
         {events.map((event) => (
           <EventCard key={event._id} event={event} theme={theme} />
         ))}

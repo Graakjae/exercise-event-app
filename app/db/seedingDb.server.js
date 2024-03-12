@@ -109,7 +109,6 @@ async function insertData() {
       registrations: [
         maria._id,
         rasmus._id,
-        rasmus._id,
         john._id,
         emily._id,
         alex._id,
@@ -165,7 +164,7 @@ async function insertData() {
       title: "High-Intensity Interval Training (HIIT)",
       description:
         "Embark on a heart-pounding journey with our High-Intensity Interval Training (HIIT) program. Experience bursts of intense exercise followed by short recovery periods, designed to torch calories and elevate your fitness levels. Get ready to sweat, burn, and achieve your fitness goals!",
-      date: new Date(),
+      date: "2024-03-25T00:00:00.000Z",
       time: "6:00",
       address: "FitZone Gym",
       image:
@@ -184,10 +183,11 @@ async function insertData() {
       title: "Zumba Dance Party",
       description:
         "Let loose and dance your heart out at our electrifying Zumba Dance Party! Groove to infectious rhythms, shake off stress, and burn calories while having the time of your life. Join our vibrant community and experience the joy of dance fitness!",
-      date: new Date(),
+      date: "2024-04-02T00:00:00.000Z",
       time: "7:30",
       address: "Dance Central Studio",
-      image: "zumba.jpg",
+      image:
+        "https://cdn.pixabay.com/photo/2019/07/12/20/56/zumba-4333580_1280.jpg",
       user: dan._id,
       registrations: [rasmus._id],
       comments: [
@@ -201,7 +201,7 @@ async function insertData() {
       title: "Running Club Meetup",
       description:
         " Lace up your running shoes and join our energetic community for a scenic run through the heart of the city. Whether you're a seasoned runner or just starting out, our inclusive club welcomes all fitness levels. Come explore, connect, and embrace the runner's high!",
-      date: new Date(),
+      date: "2024-03-19T00:00:00.000Z",
       time: "8:00",
       address: "City Park",
       image:
@@ -232,7 +232,7 @@ async function insertData() {
       title: "Pilates for Beginners",
       description:
         "Embark on a journey of self-discovery with our Pilates for Beginners class. Delve into the foundational principles of Pilates, focusing on core stability, alignment, and mindful movement. Strengthen your body, improve posture, and cultivate a deeper connection between mind and body.",
-      date: new Date(),
+      date: "2024-04-10T00:00:00.000Z",
       time: "10:00",
       address: "Pilates Studio",
       image:
@@ -256,7 +256,8 @@ async function insertData() {
       title: "Cycling Adventure",
       description:
         "Experience the thrill of the open road with our exhilarating Cycling Adventure! Discover new horizons, breathe in the fresh air, and challenge yourself as you pedal through picturesque landscapes. Whether you're a leisure cyclist or avid rider, this adventure is for you!",
-      date: new Date(),
+      date: "2024-03-28T00:00:00.000Z",
+
       time: "11:00",
       address: "Countryside",
       image:
@@ -283,7 +284,7 @@ async function insertData() {
       title: "CrossFit Challenge",
       description:
         "Unleash your inner warrior and push your limits with our CrossFit Challenge! Test your strength, endurance, and mental resilience as you tackle a series of intense workouts designed to take you to the next level. Are you ready to rise to the challenge?",
-      date: new Date(),
+      date: "2024-05-02T00:00:00.000Z",
       time: "6:30",
       address: "CrossFit Arena",
       image:
@@ -311,7 +312,7 @@ async function insertData() {
       title: "Martial Arts Seminar",
       description:
         "Immerse yourself in the ancient traditions of martial arts with our Martial Arts Seminar. Learn self-defense techniques, cultivate discipline, and enhance your physical and mental well-being in a supportive and empowering environment. Join us on the path to mastery!",
-      date: new Date(),
+      date: "2024-06-05T00:00:00.000Z",
       time: "5:00",
       address: "Martial Arts Academy",
       image:
@@ -339,7 +340,7 @@ async function insertData() {
       title: "Swimming Workshop",
       description:
         "Dive into the world of swimming with our comprehensive Swimming Workshop. From beginners to advanced swimmers, our expert instructors will guide you through stroke technique, breathing exercises, and water safety skills. Discover the joy and freedom of swimming!",
-      date: new Date(),
+      date: "2024-06-04T00:00:00.000Z",
       time: "4:00",
       address: "Aquatic Center",
       image:
@@ -366,7 +367,7 @@ async function insertData() {
       title: "Rock Climbing Adventure",
       description:
         "Challenge gravity and conquer new heights with our Rock Climbing Adventure! Explore vertical landscapes, navigate challenging routes, and experience the thrill of reaching the summit. Whether you're a seasoned climber or beginner, this adventure will push your limits!",
-      date: new Date(),
+      date: "2024-04-16T00:00:00.000Z",
       time: "12:00",
       address: "Rock Climbing Gym",
       image:
@@ -389,7 +390,7 @@ async function insertData() {
       title: "Dance Fitness Fusion",
       description:
         "Experience the ultimate fusion of dance and fitness with our Dance Fitness Fusion class. Ignite your passion for movement, sweat it out on the dance floor, and sculpt your body with dynamic choreography. Join our community and let the rhythm move you!",
-      date: new Date(),
+      date: "2024-05-26:00:00.000Z",
       time: "7:00",
       address: "Dance Fitness Studio",
       image:
@@ -415,7 +416,7 @@ async function insertData() {
       title: "Boxing Bootcamp",
       description:
         "Unleash your fighting spirit and transform your body with our Boxing Bootcamp. Learn the fundamentals of boxing technique, build strength, and enhance your cardiovascular endurance in a high-energy, supportive environment. Get ready to punch, sweat, and conquer!",
-      date: new Date(),
+      date: "2024-07-02T00:00:00.000Z",
       time: "6:00",
       address: "Boxing Gym",
       image:

@@ -178,19 +178,22 @@ export default function Event() {
             <p className="text-[15px] font-medium">{event.time}</p>
           </div>
         </div>
-        <div className="mt-4">
-          <p className="">Event host</p>
-          <div className="flex items-center mt-1 gap-2">
-            <img
-              src={event.user.image || "/default-profilePicture.png"}
-              alt={event.user.name}
-              className="w-10 h-10 rounded-full object-cover border-2 border-[#635FC7]"
-            />
-            <p>{event.user.name}</p>
-          </div>
-        </div>
+
         <div className="md:flex md:justify-between md:w-full">
-          <p className="mt-4 font-light md:w-[70%]">{event.description}</p>
+          <div className="md:w-[60%]">
+            <div className="mt-4">
+              <p className="">Event host</p>
+              <div className="flex items-center mt-1 gap-2">
+                <img
+                  src={event.user.image || "/defaultprofilePicture.png"}
+                  alt={event.user.name}
+                  className="w-10 h-10 rounded-full object-cover border-2 border-[#635FC7]"
+                />
+                <p>{event.user.name}</p>
+              </div>
+            </div>
+            <p className="mt-4 font-light ">{event.description}</p>
+          </div>
           <div className="">
             <div
               onClick={() => setIsRegisteredOpen(true)}
@@ -212,7 +215,7 @@ export default function Event() {
               <div className="flex">
                 {event.registrations.slice(0, 6).map((registration) => (
                   <img
-                    src={registration.image || "/default-profilePicture.png"}
+                    src={registration.image || "/defaultprofilePicture.png"}
                     alt={registration.name}
                     className="w-[40px] h-[40px] mr-[-5px] rounded-full object-cover border-2 border-[#635FC7]"
                     key={registration._id}
@@ -282,7 +285,11 @@ export default function Event() {
                   className={`flex gap-3 items-center  mt-1  rounded-md p-2 ${theme === "light" ? "bg-[#eeeeee]" : "bg-[#313131]"}`}
                 >
                   <img
-                    src={registration.image}
+                    src={
+                      registration.image
+                        ? registration.image
+                        : "/defaultprofilePicture.png"
+                    }
                     alt={registration.name}
                     className="w-[40px] h-[40px] sm:mr-[-5px] md:ml-[-5px] rounded-full object-cover border-2 border-[#635FC7]"
                   />
@@ -312,7 +319,7 @@ export default function Event() {
                 id="commentText"
                 aria-label="commentText"
                 placeholder="Add a comment"
-                className="w-full p-2 border border-gray-300 rounded-md text-gray-900 mt-2 "
+                className={`p-2 border border-gray-300 rounded-md w-full ${theme === "light" ? "bg-white" : "bg-black"}`}
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 required
@@ -322,7 +329,7 @@ export default function Event() {
                 name="_action"
                 aria-label="comment"
                 value="comment"
-                className="mt-2 text-white px-5 py-2 rounded-md transition-all duration-300 bg-[#635FC7]"
+                className=" text-white px-5 py-2 rounded-md transition-all duration-300 bg-[#635FC7]"
               >
                 <img src="/send.png" alt="send" className="w-6" />
               </button>
@@ -332,12 +339,12 @@ export default function Event() {
             )}
           </fieldset>
         </fetcher.Form>
-        <div className="mb-10">
+        <div className="mb-10 mt-6">
           {event.comments.map((comment) => (
-            <div key={comment._id} className="flex gap-2 my-2">
+            <div key={comment._id} className="flex gap-1 my-4">
               <img
                 src={
-                  comment?.commentedBy?.image || "/default-profilePicture.png"
+                  comment?.commentedBy?.image || "/defaultprofilePicture.png"
                 }
                 alt={comment?.commentedBy?.name}
                 className="w-[40px] h-[40px] rounded-full object-cover border-2 border-[#635FC7]"
