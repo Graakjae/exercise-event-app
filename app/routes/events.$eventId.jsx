@@ -116,17 +116,17 @@ export default function Event() {
         <div className="md:flex md:justify-between md:w-full">
           <div className="md:w-[60%]">
             <div className="mt-4">
-              <p className="">Event host</p>
+              <p className="font-medium">Event host</p>
               <div className="flex items-center mt-1 gap-2">
                 <img
                   src={event.user.image || "/defaultprofilePicture.png"}
                   alt={event.user.name}
                   className="w-10 h-10 rounded-full object-cover border-2 border-[#635FC7]"
                 />
-                <p>{event.user.name}</p>
+                <p className="font-medium">{event.user.name}</p>
               </div>
             </div>
-            <p className="mt-4 font-light ">{event.description}</p>
+            <p className="mt-4 font-light">{event.description}</p>
           </div>
           <div className="">
             <div
