@@ -49,6 +49,7 @@ export default function UpdateProfile() {
               name="name"
               type="text"
               aria-label="name"
+              required
               placeholder="Write a name..."
               className={`p-2 border border-gray-300 rounded-md w-full fill-transparent ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}
             />

@@ -44,6 +44,7 @@ export default function SignUp() {
               aria-label="mail"
               placeholder="Type your mail..."
               className={`p-2 border border-gray-300 rounded-md w-full fill-transparent ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}
+              required
             />
           </div>
           <div className="mt-4">
@@ -56,6 +57,7 @@ export default function SignUp() {
               placeholder="Type your password..."
               autoComplete="current-password"
               className={`p-2 border border-gray-300 rounded-md w-full fill-transparent ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}
+              required
             />
           </div>
           <div className="mt-4">
@@ -67,6 +69,7 @@ export default function SignUp() {
               aria-label="name"
               className={`p-2 border border-gray-300 rounded-md w-full fill-transparent ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}
               placeholder="Type your name..."
+              required
             />
           </div>
           <div className="mt-4">
