@@ -1,4 +1,4 @@
-import { useFetcher, useNavigate } from "@remix-run/react";
+import { useActionData, useFetcher, useNavigate } from "@remix-run/react";
 import { format } from "date-fns";
 import { useThemeStore } from "~/store";
 import useStore from "~/store/useStore";
@@ -28,7 +28,6 @@ export default function EntryForm({ event }) {
             id="title"
             placeholder="Type your title..."
             aria-label="title"
-            required
             defaultValue={event?.title}
             className={`p-2 border border-gray-300 rounded-md w-full  fill-transparent ${theme === "light" ? "bg-white text-black" : "bg-black text-white"}`}
           />
@@ -46,7 +45,6 @@ export default function EntryForm({ event }) {
             aria-label="description"
             placeholder="Type your description..."
             className={`p-2 border border-gray-300 rounded-md w-full ${theme === "light" ? "bg-white" : "bg-black"}`}
-            required
             defaultValue={event?.description}
           />
         </div>
@@ -92,7 +90,6 @@ export default function EntryForm({ event }) {
             name="address"
             id="address"
             placeholder="Type a address for your event..."
-            required
             defaultValue={event?.address}
             className={`p-2 border border-gray-300 rounded-md w-full ${theme === "light" ? "bg-white" : "bg-black"}`}
           />
