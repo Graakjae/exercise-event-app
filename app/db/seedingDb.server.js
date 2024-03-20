@@ -104,6 +104,7 @@ async function insertData() {
       address: "Zen Garden Yoga Studio",
       image:
         "https://cdn.pixabay.com/photo/2017/11/18/05/00/woman-2959213_1280.jpg",
+      tags: ["Yoga", "Meditation", "Wellness"],
       user: dan._id,
       registrations: [
         maria._id,
@@ -168,6 +169,7 @@ async function insertData() {
       address: "FitZone Gym",
       image:
         "https://cdn.pixabay.com/photo/2021/01/13/16/46/workout-5914643_1280.jpg",
+      tags: ["HIIT", "Fitness", "Exercise"],
       user: dan._id,
       registrations: [maria._id],
       comments: [
@@ -187,6 +189,7 @@ async function insertData() {
       address: "Dance Central Studio",
       image:
         "https://cdn.pixabay.com/photo/2019/07/12/20/56/zumba-4333580_1280.jpg",
+      tags: ["Zumba", "Dance", "Fitness"],
       user: dan._id,
       registrations: [rasmus._id],
       comments: [
@@ -205,6 +208,7 @@ async function insertData() {
       address: "City Park",
       image:
         "https://images.pexels.com/photos/1199590/pexels-photo-1199590.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      tags: ["Running", "Fitness", "Community"],
       user: alex._id,
       registrations: [maria._id, rasmus._id, john._id, emily._id],
       comments: [
@@ -236,6 +240,7 @@ async function insertData() {
       address: "Pilates Studio",
       image:
         "https://cdn.pixabay.com/photo/2018/01/01/01/56/yoga-3053487_1280.jpg",
+      tags: ["Pilates", "Fitness", "Core Strength"],
       user: emily._id,
       registrations: [maria._id, john._id],
       comments: [
@@ -261,6 +266,7 @@ async function insertData() {
       address: "Countryside",
       image:
         "https://cdn.pixabay.com/photo/2022/02/27/06/33/man-7036709_1280.jpg",
+      tags: ["Cycling", "Adventure", "Fitness"],
       user: rasmus._id,
       registrations: [maria._id, emily._id, alex._id],
       comments: [
@@ -288,6 +294,7 @@ async function insertData() {
       address: "CrossFit Arena",
       image:
         "https://cdn.pixabay.com/photo/2017/03/13/20/34/tyre-push-2141096_1280.jpg",
+      tags: ["CrossFit", "Fitness", "Challenge"],
       user: dan._id,
       registrations: [rasmus._id, emily._id, sophia._id],
       comments: [
@@ -316,6 +323,7 @@ async function insertData() {
       address: "Martial Arts Academy",
       image:
         "https://cdn.pixabay.com/photo/2017/12/22/17/19/enlogar-3033957_1280.jpg",
+      tags: ["Martial Arts", "Self-Defense", "Wellness"],
       user: sophia._id,
       registrations: [maria._id, john._id, emily._id],
       comments: [
@@ -344,6 +352,7 @@ async function insertData() {
       address: "Aquatic Center",
       image:
         "https://cdn.pixabay.com/photo/2016/03/27/21/55/girls-1284419_1280.jpg",
+      tags: ["Swimming", "Workshop", "Fitness"],
       user: olivia._id,
       registrations: [maria._id, alex._id, sophia._id],
       comments: [
@@ -371,6 +380,7 @@ async function insertData() {
       address: "Rock Climbing Gym",
       image:
         "https://cdn.pixabay.com/photo/2017/08/07/23/50/climbing-2609319_1280.jpg",
+      tags: ["Rock Climbing", "Adventure", "Fitness"],
       user: rasmus._id,
       registrations: [rasmus._id, john._id, olivia._id],
       comments: [
@@ -394,6 +404,7 @@ async function insertData() {
       address: "Dance Fitness Studio",
       image:
         "https://img.freepik.com/free-photo/two-beautiful-slender-girls-doing-dancing-gymnastics-dance-hall_1157-13817.jpg?t=st=1710259565~exp=1710263165~hmac=cd5e168a33aa201400ad0da10cf78be98bb59545666b301810483ff757bd9894&w=2000",
+      tags: ["Dance", "Fitness", "Community"],
       user: william._id,
       registrations: [maria._id, sophia._id, emma._id],
       comments: [
