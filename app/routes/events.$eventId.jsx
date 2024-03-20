@@ -7,6 +7,7 @@ import { format } from "date-fns";
 import useStore from "~/store/useStore";
 import { useThemeStore } from "~/store";
 import { useEffect, useState } from "react";
+import EventCard from "~/components/EventCard";
 export function meta({ data }) {
   return [
     {
@@ -24,19 +25,30 @@ export async function loader({ params, request }) {
     .populate("registrations")
     .populate("comments.commentedBy")
     .populate("user");
+
+  const similarEvents = await mongoose.models.Event.find({
+    _id: { $ne: params.eventId }, // Exclude the current event
+    tags: { $in: event.tags }, // Match tags
+    // Add more criteria as needed
+  })
+    .populate("user")
+    .populate("registrations")
+    .limit(5) // Limit the number of similar events
+    .exec();
   const session = await getSession(request.headers.get("Cookie"));
 
-  return json({ event, session: session.data.user._id });
+  return json({ event, similarEvents, session: session.data.user._id });
 }
 
 export default function Event() {
-  const { event, session } = useLoaderData();
+  const { event, session, similarEvents } = useLoaderData();
   const [isRegisteredOpen, setIsRegisteredOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [comment, setComment] = useState("");
   const theme = useStore(useThemeStore, (state) => state.theme);
   const fetcher = useFetcher();
   const navigate = useNavigate();
+  console.log(similarEvents);
   function confirmDelete(event) {
     const response = confirm("Please confirm you want to delete this event.");
     if (!response) {
@@ -339,6 +351,16 @@ export default function Event() {
             </div>
           ))}
         </div>
+        {similarEvents.length > 0 && (
+          <>
+            <h2 className="text-xl font-bold">Similar events</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {similarEvents.map((event) => (
+                <EventCard event={event} theme={theme} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
