@@ -61,10 +61,13 @@ const eventSchema = new mongoose.Schema(
     address: {
       type: String,
       required: true,
+      minLength: [2, "Address must be at least 2 characters"],
+      maxLength: [50, "Address must be at most 50 characters"],
     },
     image: {
       type: String,
       required: true,
+      minLength: [1, "An image for the event is required"],
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
