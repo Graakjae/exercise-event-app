@@ -24,7 +24,7 @@ export async function loader({ request }) {
 
 export default function UpdateProfile() {
   const user = useLoaderData();
-  const [image, setImage] = useState(user.image);
+  const [image, setImage] = useState(user?.image);
   const navigate = useNavigate();
   const theme = useStore(useThemeStore, (state) => state.theme);
   function handleCancel() {
@@ -45,7 +45,7 @@ export default function UpdateProfile() {
             <label htmlFor="name">Name</label>
             <input
               id="name"
-              defaultValue={user.name}
+              defaultValue={user?.name}
               name="name"
               type="text"
               aria-label="name"
@@ -59,7 +59,7 @@ export default function UpdateProfile() {
             <label htmlFor="image">Image URL</label>
             <input
               name="image"
-              defaultValue={user.image}
+              defaultValue={user?.image}
               type="url"
               onChange={(e) => setImage(e.target.value)}
               placeholder="Paste an image URL..."

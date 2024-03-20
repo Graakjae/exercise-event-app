@@ -45,14 +45,14 @@ export default function Profile() {
       <div className="w-full justify-center">
         <div className="flex justify-center">
           <img
-            src={user.image ? user.image : "/defaultprofilePicture.png"}
+            src={user?.image ? user?.image : "/defaultprofilePicture.png"}
             alt="avatar"
             className="w-[200px] h-[200px] rounded-full object-cover border-2 border-white"
           />
         </div>
 
         <h2 className="text-[30px] md:text-[40px] font-bold text-center ">
-          {user.name}
+          {user?.name}
         </h2>
 
         <h2 className="text-center md:text-start font-semibold text-[20px] md:text-[30px] mt-4 mb-2">
