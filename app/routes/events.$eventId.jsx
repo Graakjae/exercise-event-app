@@ -29,7 +29,6 @@ export async function loader({ params, request }) {
   const similarEvents = await mongoose.models.Event.find({
     _id: { $ne: params.eventId }, // Exclude the current event, ne = not equal
     tags: { $in: event.tags }, // Match tags, in = in array
-    // Add more criteria as needed
   })
     .populate("user")
     .populate("registrations")
