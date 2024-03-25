@@ -27,8 +27,8 @@ export async function loader({ params, request }) {
     .populate("user");
 
   const similarEvents = await mongoose.models.Event.find({
-    _id: { $ne: params.eventId }, // Exclude the current event
-    tags: { $in: event.tags }, // Match tags
+    _id: { $ne: params.eventId }, // Exclude the current event, ne = not equal
+    tags: { $in: event.tags }, // Match tags, in = in array
     // Add more criteria as needed
   })
     .populate("user")
@@ -43,12 +43,10 @@ export async function loader({ params, request }) {
 export default function Event() {
   const { event, session, similarEvents } = useLoaderData();
   const [isRegisteredOpen, setIsRegisteredOpen] = useState(false);
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [comment, setComment] = useState("");
   const theme = useStore(useThemeStore, (state) => state.theme);
   const fetcher = useFetcher();
   const navigate = useNavigate();
-  console.log(similarEvents);
   function confirmDelete(event) {
     const response = confirm("Please confirm you want to delete this event.");
     if (!response) {
